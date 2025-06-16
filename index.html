@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polyglot Converter - Modern Chinese Conversion Plugin</title>
+    
+    <!-- CSS is included directly in the HTML head -->
+    <style>
+        /* --- Variable Definitions & Global Styles --- */
+        :root {
+          --bg-white: #FFFFFF;
+          --bg-light-gray: #F9FAFB;
+          --text-dark: #111827;
+          --text-medium: #4B5563;
+          --text-light: #6B7280;
+          --accent-purple: #A084E8;
+          --accent-purple-dark: #8461C9;
+          --accent-yellow: #FBBF24; /* Color for mobile CTA */
+          --border-color: #E5E7EB;
+          --footer-bg: #1F2937;
+          --footer-text: #D1D5DB;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+          font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+          background-color: var(--bg-white);
+          color: var(--text-dark);
+          line-height: 1.7;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+        }
+        body.menu-open { overflow: hidden; }
+
+        /* --- Utility Class & General Styles --- */
+        .hidden { display: none !important; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        .section-title { font-size: 36px; font-weight: 800; text-align: center; margin-bottom: 16px; }
+        .section-subtitle { font-size: 18px; text-align: center; color: var(--text-medium); max-width: 600px; margin: 0 auto 60px auto; }
+
+        .fade-in-section { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+        .fade-in-section.is-visible { opacity: 1; transform: translateY(0); }
+
+        /* --- Header & Navigation (Desktop) --- */
+        #page-header { width: 100%; padding: 20px 0; border-bottom: 1px solid var(--border-color); background-color: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100; }
+        .header-container { display: flex; justify-content: space-between; align-items: center; }
+        #logo-link { text-decoration: none; font-size: 24px; font-weight: 700; }
+        #logo-main-text { color: var(--text-dark); }
+        #logo-accent-text { color: var(--accent-purple); }
+        #main-nav { display: flex; gap: 30px; }
+        .nav-link { text-decoration: none; color: var(--text-medium); font-weight: 500; transition: color 0.2s ease; }
+        .nav-link:hover { color: var(--accent-purple); }
+        #lang-switcher { display: flex; gap: 5px; }
+        .lang-button { background: none; border: 1px solid #ccc; border-radius: 4px; padding: 5px 10px; cursor: pointer; font-weight: 500; transition: all 0.2s ease; }
+        .lang-button.active { background-color: var(--accent-purple); color: var(--bg-white); border-color: var(--accent-purple); }
+        
+        /* --- Mobile Header & Off-Canvas Menu --- */
+        #hamburger-menu-btn { display: none; cursor: pointer; background: none; border: none; padding: 5px; }
+        #hamburger-menu-btn .bar { display: block; width: 25px; height: 3px; margin: 5px 0; background-color: var(--text-dark); transition: 0.3s; }
+        
+        #mobile-menu-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); z-index: 1000; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease; }
+        
+        /* UPDATED: Mobile Menu Panel with Margin and Rounded Corners */
+        #mobile-menu-panel {
+            position: fixed;
+            top: 10px;
+            left: -100%; /* Start off-screen */
+            width: 85%;
+            max-width: 320px;
+            height: calc(100vh - 20px); /* Account for top/bottom margin */
+            background-color: var(--bg-white);
+            box-shadow: 5px 0 35px rgba(0,0,0,0.15);
+            transition: left 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Changed to 'left' transition */
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            z-index: 1001;
+            border-radius: 16px; /* Rounded corners */
+        }
+        
+        body.menu-open #mobile-menu-overlay { opacity: 1; visibility: visible; }
+        /* UPDATED: Slide in to a position with margin */
+        body.menu-open #mobile-menu-panel { left: 10px; }
+
+        #mobile-menu-header { display: flex; justify-content: flex-end; margin-bottom: 20px; }
+        #mobile-menu-close-btn { background: none; border: none; font-size: 28px; cursor: pointer; color: var(--text-medium); line-height: 1; }
+        
+        #mobile-menu-profile { display: flex; align-items: center; gap: 15px; padding: 10px; margin-bottom: 20px; }
+        #mobile-menu-profile-icon { width: 50px; height: 50px; border-radius: 12px; background-color: #E8E2F7; display: flex; align-items: center; justify-content: center; font-size: 24px; }
+        #mobile-menu-profile-name { font-weight: 600; font-size: 18px; }
+        #mobile-menu-profile-sub { color: var(--text-light); font-size: 14px; }
+
+        #mobile-menu-nav { flex-grow: 1; border-top: 1px solid var(--border-color); padding-top: 10px; overflow-y: auto; }
+        .mobile-nav-link { display: flex; align-items: center; gap: 20px; padding: 16px 10px; text-decoration: none; color: var(--text-dark); font-weight: 500; font-size: 16px; border-radius: 8px; transition: background-color 0.2s; }
+        .mobile-nav-link:hover { background-color: var(--bg-light-gray); }
+        .mobile-nav-link .icon { font-size: 20px; width: 24px; text-align: center; color: var(--text-medium); }
+
+        #mobile-menu-footer-nav { padding: 20px 10px; border-top: 1px solid var(--border-color); }
+        #mobile-lang-switcher { display: flex; justify-content: space-between; align-items: center; }
+        #mobile-lang-switcher span { font-weight: 500; }
+        #mobile-lang-switcher .lang-button { font-size: 14px; }
+
+        #mobile-menu-cta { display: block; width: 100%; padding: 16px; background-color: var(--accent-yellow); color: var(--text-dark); border: none; border-radius: 12px; font-size: 18px; font-weight: 600; text-align: center; text-decoration: none; margin-top: 15px; }
+        
+        /* ... (all other styles remain the same) ... */
+        #hero-section { padding: 100px 0; text-align: center; }
+        #hero-headline { font-size: 52px; font-weight: 800; margin-bottom: 20px; line-height: 1.2; }
+        #hero-headline .highlight { color: var(--accent-purple); }
+        .typing-cursor { display: inline-block; width: 3px; height: 48px; background-color: var(--accent-purple); animation: blink 1s infinite; vertical-align: bottom; }
+        @keyframes blink { 50% { opacity: 0; } }
+        #hero-subtitle { font-size: 20px; color: var(--text-medium); margin-bottom: 40px; max-width: 650px; margin-left: auto; margin-right: auto; }
+        #hero-cta-button { display: inline-block; background: linear-gradient(45deg, var(--accent-purple), var(--accent-purple-dark)); color: var(--bg-white); padding: 16px 40px; font-size: 18px; font-weight: 600; text-decoration: none; border-radius: 12px; transition: transform 0.2s ease, box-shadow 0.2s ease; box-shadow: 0 4px 20px rgba(160, 132, 232, 0.4); }
+        #hero-cta-button:hover { transform: translateY(-3px); box-shadow: 0 7px 25px rgba(160, 132, 232, 0.5); }
+        .section-wrapper { padding: 100px 0; }
+        .section-wrapper.bg-gray { background-color: var(--bg-light-gray); }
+        #who-is-for-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .persona-card { background-color: var(--bg-white); padding: 30px; border-radius: 12px; border: 1px solid var(--border-color); text-align: center; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .persona-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.07); }
+        .persona-icon { font-size: 40px; margin-bottom: 20px; color: var(--accent-purple); }
+        .persona-title { font-size: 22px; margin-bottom: 10px; }
+        .persona-description { font-size: 16px; color: var(--text-light); }
+        #how-it-works-steps { display: flex; justify-content: space-between; gap: 40px; margin-top: 60px; position: relative; }
+        .step-card { flex: 1; text-align: center; }
+        .step-number { width: 60px; height: 60px; line-height: 60px; border-radius: 50%; background-color: var(--accent-purple); color: var(--bg-white); font-size: 24px; font-weight: 700; margin: 0 auto 20px auto; border: 4px solid var(--bg-light-gray); z-index: 2; position: relative; }
+        .step-title { font-size: 20px; font-weight: 600; margin-bottom: 10px; }
+        .step-description { color: var(--text-medium); }
+        #how-it-works-steps::before { content: ''; position: absolute; width: calc(100% - 200px); height: 2px; background-image: linear-gradient(to right, #ccc 50%, transparent 50%); background-size: 10px 2px; top: 30px; left: 100px; z-index: 1; }
+        #about-project-content { display: flex; align-items: center; gap: 60px; }
+        #about-project-text { flex: 1; }
+        #about-project-title { font-size: 32px; margin-bottom: 20px; text-align: left; }
+        #about-project-description p { margin-bottom: 20px; font-size: 18px; color: var(--text-medium); }
+        #about-project-visual { flex: 1; text-align: center; }
+        #about-project-visual .icon { font-size: 150px; color: var(--accent-purple); opacity: 0.2; }
+        #faq-container { max-width: 800px; margin: 0 auto; }
+        .faq-item { border-bottom: 1px solid var(--border-color); }
+        .faq-question { width: 100%; background: none; border: none; text-align: left; padding: 20px 0; font-size: 18px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; color: var(--text-dark); }
+        .faq-icon { font-style: normal; font-weight: bold; font-size: 24px; transition: transform 0.3s ease; }
+        .faq-question.active .faq-icon { transform: rotate(45deg); }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; color: var(--text-medium); }
+        .faq-answer p { padding-bottom: 20px; }
+        #newsletter-section { background-color: var(--bg-white); border-top: 1px solid var(--border-color); }
+        #newsletter-form-container { max-width: 600px; margin: 0 auto; }
+        #newsletter-form { display: flex; gap: 10px; margin-top: 30px; }
+        #newsletter-email-input { flex-grow: 1; padding: 15px; font-size: 16px; border: 1px solid var(--border-color); border-radius: 8px; transition: border-color 0.2s, box-shadow 0.2s; }
+        #newsletter-email-input:focus { outline: none; border-color: var(--accent-purple); box-shadow: 0 0 0 3px rgba(160, 132, 232, 0.2); }
+        #newsletter-submit-button { padding: 15px 25px; font-size: 16px; font-weight: 600; border: none; border-radius: 8px; background-color: var(--accent-purple); color: white; cursor: pointer; transition: background-color 0.2s; }
+        #newsletter-submit-button:hover { background-color: var(--accent-purple-dark); }
+        #newsletter-disclaimer { font-size: 13px; color: var(--text-light); text-align: center; margin-top: 15px; }
+        
+        /* --- Footer --- */
+        #page-footer { background-color: var(--footer-bg); color: var(--footer-text); padding: 80px 0; }
+        .footer-container { max-width: 800px; margin: 0 auto; }
+        #legal-tab-buttons { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; border-bottom: 1px solid #374151; padding-bottom: 15px; }
+        .legal-tab-button { background: none; border: none; color: var(--footer-text); padding: 10px 20px; font-size: 16px; font-weight: 500; cursor: pointer; border-radius: 8px; transition: background-color 0.2s, color 0.2s; }
+        .legal-tab-button:hover { background-color: #374151; }
+        .legal-tab-button.active { background-color: var(--accent-purple); color: white; }
+        #legal-tab-content { text-align: left; font-size: 14px; line-height: 1.7; }
+        .legal-content-panel { padding: 20px; background-color: #2a374a; border-radius: 8px; }
+        .legal-title { color: var(--bg-white); font-size: 18px; margin-bottom: 15px; }
+        .legal-text { color: #9CA3AF; }
+        .legal-text strong { color: var(--footer-text); }
+        #copyright-text { margin-top: 50px; padding-top: 30px; border-top: 1px solid #374151; font-size: 13px; color: #6B7280; text-align: center; }
+        
+        /* --- Responsive Adjustments --- */
+        @media (max-width: 1024px) {
+            #main-nav, #lang-switcher { display: none; }
+            #hamburger-menu-btn { display: block; }
+            .header-container { justify-content: space-between; width: 100%; }
+            #who-is-for-grid { grid-template-columns: 1fr; }
+            #how-it-works-steps { flex-direction: column; gap: 40px; }
+            #how-it-works-steps::before { display: none; }
+            #about-project-content { flex-direction: column; }
+        }
+        @media (max-width: 768px) {
+            #hero-headline { font-size: 40px; }
+            #hero-subtitle { font-size: 18px; }
+            .section-title { font-size: 30px; }
+            .section-subtitle { font-size: 16px; }
+            #newsletter-form { flex-direction: column; }
+            #legal-tab-buttons { flex-wrap: wrap; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header id="page-header">
+        <div class="container header-container">
+            <div id="logo">
+                <a id="logo-link" href="#">
+                    <span id="logo-main-text">Polyglot</span><span id="logo-accent-text">Converter</span>
+                </a>
+            </div>
+            <nav id="main-nav">
+                <a class="nav-link" href="#who-is-for-section"><span lang="en">Who For</span><span lang="zh" class="hidden">適用對象</span></a>
+                <a class="nav-link" href="#how-it-works-section"><span lang="en">How It Works</span><span lang="zh" class="hidden">運作方式</span></a>
+                <a class="nav-link" href="#faq-section"><span lang="en">FAQ</span><span lang="zh" class="hidden">常見問題</span></a>
+                <a class="nav-link" href="#about-project-section"><span lang="en">About</span><span lang="zh" class="hidden">關於</span></a>
+            </nav>
+            <div id="lang-switcher">
+                <button class="lang-button" data-lang="en">EN</button>
+                <button class="lang-button" data-lang="zh">繁中</button>
+            </div>
+            <button id="hamburger-menu-btn" aria-label="Open menu">
+                <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+            </button>
+        </div>
+    </header>
+
+    <div id="mobile-menu-overlay"></div>
+    <nav id="mobile-menu-panel">
+        <div id="mobile-menu-header"><button id="mobile-menu-close-btn" aria-label="Close menu">×</button></div>
+        <div id="mobile-menu-profile"><div id="mobile-menu-profile-icon">👤</div><div><div id="mobile-menu-profile-name"><span lang="en">Welcome</span><span lang="zh" class="hidden">歡迎</span></div><div id="mobile-menu-profile-sub"><span lang="en">Guest</span><span lang="zh" class="hidden">訪客</span></div></div></div>
+        <div id="mobile-menu-nav">
+            <a class="mobile-nav-link" href="#who-is-for-section"><span class="icon">👥</span><span><span lang="en">Who For</span><span lang="zh" class="hidden">適用對象</span></span></a>
+            <a class="mobile-nav-link" href="#how-it-works-section"><span class="icon">⚙️</span><span><span lang="en">How It Works</span><span lang="zh" class="hidden">運作方式</span></span></a>
+            <a class="mobile-nav-link" href="#faq-section"><span class="icon">❓</span><span><span lang="en">FAQ</span><span lang="zh" class="hidden">常見問題</span></span></a>
+            <a class="mobile-nav-link" href="#about-project-section"><span class="icon">💡</span><span><span lang="en">About</span><span lang="zh" class="hidden">關於</span></span></a>
+        </div>
+        <div id="mobile-menu-footer-nav"><div id="mobile-lang-switcher"><span><span lang="en">Language</span><span lang="zh" class="hidden">語言</span></span><div><button class="lang-button" data-lang="en">EN</button><button class="lang-button" data-lang="zh">繁中</button></div></div></div>
+        <a id="mobile-menu-cta" href="[LINK_TO_YOUR_PLUGIN.ZIP]"><span lang="en">Download Now</span><span lang="zh" class="hidden">立即下載</span></a>
+    </nav>
+    
+    <main id="main-content">
+        <section id="hero-section" class="section-wrapper">
+            <div class="container"><h1 id="hero-headline"><span lang="en">Bridge the Chinese Web. </span><span lang="zh" class="hidden">連接中文世界，</span><br><span class="highlight" id="typing-text"></span><span class="typing-cursor"></span></h1><p id="hero-subtitle"><span lang="en">The ultimate WordPress plugin to seamlessly convert between Traditional and Simplified Chinese. Expand your reach with a single click.</span><span lang="zh" class="hidden">終極的 WordPress 插件，實現繁體與簡體中文的無縫轉換。一鍵點擊，拓展您的讀者群。</span></p><a id="hero-cta-button" href="[LINK_TO_YOUR_PLUGIN.ZIP]"><span lang="en">Download for Free</span><span lang="zh" class="hidden">免費下載</span></a></div>
+        </section>
+        <section id="who-is-for-section" class="section-wrapper fade-in-section">
+            <div class="container"><h2 class="section-title"><span lang="en">Made for Everyone</span><span lang="zh" class="hidden">為每個人而生</span></h2><p class="section-subtitle"><span lang="en">Whether you're a blogger, a business, or an educator, our plugin helps you connect with the entire Chinese-speaking world.</span><span lang="zh" class="hidden">無論您是部落客、企業主還是教育工作者，我們的插件都能幫助您連接整個華語世界。</span></p><div id="who-is-for-grid"><div class="persona-card"><div class="persona-icon">✍️</div><h3 class="persona-title"><span lang="en">Content Creators</span><span lang="zh" class="hidden">內容創作者</span></h3><p class="persona-description"><span lang="en">Expand your blog's readership to mainland China, Taiwan, Hong Kong, and beyond without any extra effort.</span><span lang="zh" class="hidden">無需額外工作，即可將您的部落格讀者群擴展到中國大陸、台灣、香港及海外地區。</span></p></div><div class="persona-card"><div class="persona-icon">🏢</div><h3 class="persona-title"><span lang="en">Businesses & E-commerce</span><span lang="zh" class="hidden">企業與電商</span></h3><p class="persona-description"><span lang="en">Provide a localized experience for all your customers, improve user satisfaction, and boost conversion rates.</span><span lang="zh" class="hidden">為所有客戶提供本地化體驗，提升用戶滿意度，並增加轉換率。</span></p></div><div class="persona-card"><div class="persona-icon">🎓</div><h3 class="persona-title"><span lang="en">Academics & Educators</span><span lang="zh" class="hidden">學術與教育</span></h3><p class="persona-description"><span lang="en">Make your research, articles, and educational materials accessible to students and scholars across different regions.</span><span lang="zh" class="hidden">讓您的研究、文章和教材能夠被不同地區的學生和學者輕鬆取用。</span></p></div></div></div>
+        </section>
+        <section id="how-it-works-section" class="section-wrapper bg-gray fade-in-section">
+            <div class="container"><h2 class="section-title"><span lang="en">Effortless in 3 Steps</span><span lang="zh" class="hidden">三步搞定，毫不費力</span></h2><div id="how-it-works-steps"><div class="step-card"><div class="step-number">1</div><h3 class="step-title"><span lang="en">Install</span><span lang="zh" class="hidden">安裝</span></h3><p class="step-description"><span lang="en">Download and install the plugin on your WordPress site like any other.</span><span lang="zh" class="hidden">像安裝其他外掛一樣，下載並在您的 WordPress 網站上安裝。</span></p></div><div class="step-card"><div class="step-number">2</div><h3 class="step-title"><span lang="en">Activate</span><span lang="zh" class="hidden">啟用</span></h3><p class="step-description"><span lang="en">Activate the plugin. A language toggle button is automatically added to your site.</span><span lang="zh" class="hidden">啟用插件。一個語言切換按鈕將自動添加到您的網站。</span></p></div><div class="step-card"><div class="step-number">3</div><h3 class="step-title"><span lang="en">Connect</span><span lang="zh" class="hidden">連接</span></h3><p class="step-description"><span lang="en">That's it! Your visitors can now instantly switch between language variants.</span><span lang="zh" class="hidden">就這樣！您的訪客現在可以即時切換不同的中文版本。</span></p></div></div></div>
+        </section>
+        <section id="about-project-section" class="section-wrapper fade-in-section">
+            <div class="container"><div id="about-project-content"><div id="about-project-text"><h2 id="about-project-title"><span lang="en">About This Project</span><span lang="zh" class="hidden">關於本專案</span></h2><div id="about-project-description"><p><span lang="en">Polyglot Converter was born from a simple idea: communication should be seamless. We noticed many websites cater to either Traditional or Simplified Chinese users, but rarely both with ease.</span><span lang="zh" class="hidden">Polyglot Converter 誕生於一個簡單的想法：溝通應該是無縫的。我們注意到許多網站只服務繁體或簡體中文用戶，很少能輕鬆地同時服務兩者。</span></p><p><span lang="en">This lightweight, open-source plugin is our contribution to a more connected web. It's built with performance and simplicity at its core, ensuring anyone can bridge the language gap without technical hurdles.</span><span lang="zh" class="hidden">這個輕巧的開源插件是我們對建立更互聯的網路所做的貢獻。它以性能和簡潔為核心，確保任何人都能在沒有技術障礙的情況下跨越語言鴻溝。</span></p></div></div><div id="about-project-visual"><div class="icon">🚀</div></div></div></div>
+        </section>
+        <section id="faq-section" class="section-wrapper bg-gray fade-in-section">
+            <div class="container"><h2 class="section-title"><span lang="en">Frequently Asked Questions</span><span lang="zh" class="hidden">常見問題</span></h2><div id="faq-container"><div class="faq-item"><button class="faq-question"><span><span lang="en">Does this affect my site's SEO?</span><span lang="zh" class="hidden">這會影響我網站的 SEO 嗎？</span></span><i class="faq-icon">+</i></button><div class="faq-answer"><p><span lang="en">No. The conversion happens on the client-side (in the user's browser). Search engines will still see your original content. For advanced multilingual SEO, you should use dedicated plugins like WPML or Polylang in conjunction with this tool.</span><span lang="zh" class="hidden">不會。轉換是在客戶端（用戶的瀏覽器中）進行的。搜尋引擎仍然會抓取您的原始內容。若要進行進階的多語言 SEO，您應考慮搭配使用 WPML 或 Polylang 等專門的插件。</span></p></div></div><div class="faq-item"><button class="faq-question"><span><span lang="en">Will it slow down my website?</span><span lang="zh" class="hidden">這會拖慢我的網站速度嗎？</span></span><i class="faq-icon">+</i></button><div class="faq-answer"><p><span lang="en">Absolutely not. The plugin is extremely lightweight and optimized for performance. The conversion script is small and loads asynchronously, so it won't impact your page load times.</span><span lang="zh" class="hidden">完全不會。此插件極其輕巧，並為性能進行了優化。轉換腳本很小且非同步加載，因此不會影響您的頁面加載時間。</span></p></div></div><div class="faq-item"><button class="faq-question"><span><span lang="en">Can I customize the toggle button?</span><span lang="zh" class="hidden">我可以自訂切換按鈕的樣式嗎？</span></span><i class="faq-icon">+</i></button><div class="faq-answer"><p><span lang="en">Yes! The button has a specific CSS class, so you can easily style it with your own custom CSS to match your theme's design. Future versions may include more built-in customization options.</span><span lang="zh" class="hidden">可以！按鈕有一個特定的 CSS class，您可以輕鬆地使用自己的 CSS 來設定樣式，以匹配您主題的設計。未來的版本可能會包含更多內建的自訂選項。</span></p></div></div></div></div>
+        </section>
+        <section id="newsletter-section" class="section-wrapper fade-in-section">
+            <div class="container"><h2 class="section-title"><span lang="en">Stay Updated</span><span lang="zh" class="hidden">保持聯繫</span></h2><p class="section-subtitle"><span lang="en">Sign up for news about future updates, new features, and other projects. No spam, ever.</span><span lang="zh" class="hidden">訂閱我們的電子報，以獲取未來更新、新功能和其他專案的資訊。絕無垃圾郵件。</span></p><div id="newsletter-form-container"><form id="newsletter-form"><input type="email" id="newsletter-email-input" placeholder="your.email@example.com" required><button type="submit" id="newsletter-submit-button"><span lang="en">Subscribe</span><span lang="zh" class="hidden">訂閱</span></button></form><p id="newsletter-disclaimer"><span lang="en">We respect your privacy. Your email will never be shared with third parties, and you can unsubscribe at any time.</span><span lang="zh" class="hidden">我們尊重您的隱私。您的電子郵件絕不會與第三方分享，您可以隨時取消訂閱。</span></p></div></div>
+        </section>
+    </main>
+    
+    <footer id="page-footer">
+        <div class="container footer-container">
+            <div id="legal-tab-container">
+                <div id="legal-tab-buttons">
+                    <button class="legal-tab-button active" data-target="#impressum-content"><span lang="en">Impressum</span><span lang="zh" class="hidden">網站資訊</span></button>
+                    <button class="legal-tab-button" data-target="#datenschutz-content"><span lang="en">Privacy</span><span lang="zh" class="hidden">隱私政策</span></button>
+                    <button class="legal-tab-button" data-target="#license-content"><span lang="en">License</span><span lang="zh" class="hidden">授權條款</span></button>
+                </div>
+                <div id="legal-tab-content">
+                    <div id="impressum-content" class="legal-content-panel">
+                        <h4 class="legal-title"><span lang="en">Impressum</span><span lang="zh" class="hidden">網站資訊</span></h4>
+                        <p class="legal-text"><span lang="en">[Your Company/Name]<br>[Your Street, Number]<br>[Your Postal Code, City]<br>[Country]<br>Email: [your-email@example.com]</span><span lang="zh" class="hidden">[您的公司/姓名]<br>[您的街道地址]<br>[您的郵政編碼, 城市]<br>[國家]<br>電子郵件: [your-email@example.com]</span></p>
+                    </div>
+                    <div id="datenschutz-content" class="legal-content-panel hidden">
+                        <h4 class="legal-title"><span lang="en">Privacy Policy</span><span lang="zh" class="hidden">隱私政策</span></h4>
+                        <p class="legal-text"><span lang="en">This website does not collect any personal data, except for email addresses voluntarily submitted through our newsletter form. We will never share or sell your email to third parties. Our plugin, Polyglot Converter, processes content locally and does not transmit any content or personal data to us.</span><span lang="zh" class="hidden">本網站不收集任何個人數據，但您自願透過電子報表格提交的電子郵件地址除外。我們絕不會分享或出售您的郵件給第三方。我們的插件 Polyglot Converter 在本地處理內容，不會傳輸任何內容或個人數據給我們。</span></p>
+                    </div>
+                    <div id="license-content" class="legal-content-panel hidden">
+                        <h4 class="legal-title"><span lang="en">License & Disclaimer</span><span lang="zh" class="hidden">授權與免責聲明</span></h4>
+                        <p class="legal-text"><span lang="en">This plugin is licensed under the [e.g., MIT License or GPLv2]. It is provided "as is", without warranty of any kind. <strong>We hold no responsibility for any direct or indirect damages, data loss, or other issues arising from the use or misuse of this tool.</strong> Users are solely responsible for ensuring their use of the converted content complies with all applicable laws and regulations.</span><span lang="zh" class="hidden">本插件根據 [例如 MIT 授權條款或 GPLv2] 授權。本插件按“原樣”提供，不附帶任何形式的保證。<strong>我們對因使用或不當使用本工具而導致的任何直接或間接損害、數據丟失或其他問題概不負責。</strong>用戶需自行負責確保其對轉換後內容的使用符合所有適用的法律法規。</span></p>
+                    </div>
+                </div>
+            </div>
+            <p id="copyright-text"><span lang="en">© <span id="current-year-en"></span> [Your Name/Company]. All Rights Reserved.</span><span lang="zh" class="hidden">© <span id="current-year-zh"></span> [您的姓名/公司]. 版權所有。</span></p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const body = document.querySelector('body');
+            const hamburgerBtn = document.getElementById('hamburger-menu-btn');
+            const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+            const mobileMenuCloseBtn = document.getElementById('mobile-menu-close-btn');
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+            const allLangButtons = document.querySelectorAll('.lang-button');
+            const translatableElements = document.querySelectorAll('span[lang]');
+            const typingTextElement = document.getElementById('typing-text');
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            const faders = document.querySelectorAll('.fade-in-section');
+            const tabButtons = document.querySelectorAll('.legal-tab-button');
+            const tabPanels = document.querySelectorAll('.legal-content-panel');
+            const newsletterForm = document.getElementById('newsletter-form');
+            const words = { en: ["Instantly.", "Effortlessly.", "Beautifully."], zh: ["即時轉換。", "毫不費力。", "優雅呈現。"] };
+            let currentWordIndex = 0, currentLetterIndex = 0, isDeleting = false;
+
+            const openMenu = () => body.classList.add('menu-open');
+            const closeMenu = () => body.classList.remove('menu-open');
+
+            const switchLanguage = (targetLang) => {
+                translatableElements.forEach(el => { el.classList.toggle('hidden', el.getAttribute('lang') !== targetLang); });
+                allLangButtons.forEach(button => { button.classList.toggle('active', button.dataset.lang === targetLang); });
+                localStorage.setItem('preferredLang', targetLang);
+            };
+
+            const type = () => {
+                const currentLang = localStorage.getItem('preferredLang') || 'en';
+                const currentWords = words[currentLang]; const currentWord = currentWords[currentWordIndex];
+                if (isDeleting) { typingTextElement.textContent = currentWord.substring(0, currentLetterIndex - 1); currentLetterIndex--; } 
+                else { typingTextElement.textContent = currentWord.substring(0, currentLetterIndex + 1); currentLetterIndex++; }
+                let typeSpeed = isDeleting ? 100 : 200;
+                if (!isDeleting && currentLetterIndex === currentWord.length) { typeSpeed = 2000; isDeleting = true; } 
+                else if (isDeleting && currentLetterIndex === 0) { isDeleting = false; currentWordIndex = (currentWordIndex + 1) % currentWords.length; typeSpeed = 500; }
+                setTimeout(type, typeSpeed);
+            };
+
+            const setCopyrightYear = () => {
+                const currentYear = new Date().getFullYear();
+                const yearSpanEn = document.getElementById('current-year-en');
+                const yearSpanZh = document.getElementById('current-year-zh');
+                if (yearSpanEn) yearSpanEn.textContent = currentYear;
+                if (yearSpanZh) yearSpanZh.textContent = currentYear;
+            };
+
+            hamburgerBtn.addEventListener('click', openMenu);
+            mobileMenuCloseBtn.addEventListener('click', closeMenu);
+            mobileMenuOverlay.addEventListener('click', closeMenu);
+            mobileNavLinks.forEach(link => { link.addEventListener('click', closeMenu); });
+
+            allLangButtons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                    switchLanguage(event.currentTarget.dataset.lang);
+                });
+            });
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', () => {
+                    const answer = question.nextElementSibling; const isActive = question.classList.contains('active');
+                    faqQuestions.forEach(q => { q.classList.remove('active'); q.nextElementSibling.style.maxHeight = null; });
+                    if (!isActive) { question.classList.add('active'); answer.style.maxHeight = answer.scrollHeight + "px"; }
+                });
+            });
+
+            const appearOnScroll = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); }
+                });
+            }, { threshold: 0.15, rootMargin: "0px 0px -50px 0px" });
+            faders.forEach(fader => { appearOnScroll.observe(fader); });
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    const targetPanelId = button.dataset.target;
+                    tabPanels.forEach(panel => { panel.classList.toggle('hidden', `#${panel.id}` !== targetPanelId); });
+                });
+            });
+
+            newsletterForm.addEventListener('submit', (event) => {
+                event.preventDefault();
+                const emailInput = document.getElementById('newsletter-email-input');
+                const userEmail = emailInput.value;
+                const yourReceivingEmail = 'your-email@example.com'; 
+                const subject = 'New Newsletter Subscription';
+                const body = `Please add the following email to the newsletter list:\n\n${userEmail}`;
+                window.location.href = `mailto:${yourReceivingEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                alert('Thank you! Please click "Send" in your email client to complete the subscription.');
+                emailInput.value = '';
+            });
+
+            // Initializations
+            const savedLang = localStorage.getItem('preferredLang') || 'en';
+            switchLanguage(savedLang);
+            if (typingTextElement) { type(); }
+            setCopyrightYear();
+        });
+    </script>
+</body>
+</html>
