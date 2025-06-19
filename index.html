@@ -1,210 +1,546 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Chinese Traditional-Simplified Conversion - WordPress Chinese Conversion Plugin</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet"><style>:root{--bg-white:#FFFFFF;--bg-light-gray:#F9FAFB;--text-dark:#111827;--text-medium:#4B5563;--text-light:#6B7280;--accent-purple:#8B5CF6;--accent-purple-dark:#7C3AED;--border-color:#E5E7EB;--footer-bg:#1F2937;--footer-text:#D1D5DB}*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{font-family:Inter,'Noto Sans TC','Noto Sans SC',sans-serif;background-color:var(--bg-white);color:var(--text-dark);line-height:1.7;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}body.menu-open{overflow:hidden}.hidden{display:none!important}.container{max-width:1100px;margin:0 auto;padding:0 20px}.section-title{font-size:36px;font-weight:800;text-align:center;margin-bottom:16px}.section-subtitle{font-size:18px;text-align:center;color:var(--text-medium);max-width:600px;margin:0 auto 60px auto}.section-wrapper{padding:100px 0}.section-wrapper.bg-gray{background-color:var(--bg-light-gray)}.fade-in-section{opacity:0;transform:translateY(30px);transition:opacity .6s ease-out,transform .6s ease-out}.fade-in-section.is-visible{opacity:1;transform:translateY(0)}#page-header{width:100%;padding:20px 0;border-bottom:1px solid var(--border-color);background-color:rgba(255,255,255,.8);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);position:sticky;top:0;z-index:100}.header-container{display:flex;justify-content:space-between;align-items:center}#logo-link{text-decoration:none;font-size:24px;font-weight:700}#logo-main-text{color:var(--text-dark)}#logo-accent-text{color:var(--accent-purple)}#main-nav{display:flex;gap:30px}.nav-link{text-decoration:none;color:var(--text-medium);font-weight:500;transition:color .2s ease}.nav-link:hover{color:var(--accent-purple)}#lang-switcher{display:flex;gap:5px}.lang-button{background:0 0;border:1px solid #ccc;border-radius:4px;padding:5px 10px;cursor:pointer;font-weight:500;transition:all .2s ease;font-size:14px}.lang-button.active{background-color:var(--accent-purple);color:var(--bg-white);border-color:var(--accent-purple)}#hamburger-menu-btn{display:none;cursor:pointer;background:0 0;border:none;padding:5px}#hamburger-menu-btn .bar{display:block;width:25px;height:3px;margin:5px 0;background-color:var(--text-dark);transition:.3s}#mobile-menu-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,.5);z-index:1000;opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s ease}#mobile-menu-panel{position:fixed;top:10px;left:-100%;width:85%;max-width:320px;height:calc(100vh - 20px);background-color:var(--bg-white);box-shadow:5px 0 35px rgba(0,0,0,.15);transition:left .35s cubic-bezier(.25,.46,.45,.94);display:flex;flex-direction:column;padding:20px;z-index:1001;border-radius:16px}body.menu-open #mobile-menu-overlay{opacity:1;visibility:visible}body.menu-open #mobile-menu-panel{left:10px}#mobile-menu-header{display:flex;justify-content:flex-end;margin-bottom:20px}#mobile-menu-close-btn{background:0 0;border:none;font-size:28px;cursor:pointer;color:var(--text-medium);line-height:1}#mobile-menu-nav{flex-grow:1;border-top:1px solid var(--border-color);padding-top:10px;overflow-y:auto}.mobile-nav-link{display:flex;align-items:center;gap:20px;padding:16px 10px;text-decoration:none;color:var(--text-dark);font-weight:500;font-size:16px;border-radius:8px;transition:background-color .2s}.mobile-nav-link:hover{background-color:var(--bg-light-gray)}.mobile-nav-link .icon{font-size:20px;width:24px;text-align:center;color:var(--text-medium)}#mobile-menu-footer-nav{padding:20px 10px;border-top:1px solid var(--border-color)}#mobile-lang-switcher{display:flex;justify-content:space-between;align-items:center}#mobile-lang-switcher span{font-weight:500}#mobile-lang-switcher .lang-button{font-size:14px}#mobile-menu-cta{display:block;width:100%;padding:16px;background-color:var(--accent-purple);color:var(--bg-white);border:none;border-radius:12px;font-size:18px;font-weight:600;text-align:center;text-decoration:none;margin-top:15px}#hero-section{padding:100px 0;text-align:center}#hero-headline{font-size:52px;font-weight:800;margin-bottom:20px;line-height:1.2}#hero-headline .highlight{color:var(--accent-purple)}#hero-subtitle{font-size:20px;color:var(--text-medium);margin-bottom:40px;max-width:650px;margin-left:auto;margin-right:auto}#hero-cta-button{display:inline-block;background:linear-gradient(45deg,var(--accent-purple),var(--accent-purple-dark));color:var(--bg-white);padding:16px 40px;font-size:18px;font-weight:600;text-decoration:none;border-radius:12px;transition:transform .2s ease,box-shadow .2s ease;box-shadow:0 4px 20px rgba(139,92,246,.4)}#hero-cta-button:hover{transform:translateY(-3px);box-shadow:0 7px 25px rgba(139,92,246,.5)}.typing-cursor{display:inline-block;width:3px;height:1.1em;background-color:var(--accent-purple);animation:blink 1s infinite;vertical-align:text-bottom;margin-left:5px}@keyframes blink{50%{opacity:0}}.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:25px}.feature-item{display:flex;align-items:flex-start;gap:20px;background-color:var(--bg-white);padding:25px;border-radius:12px;border:1px solid var(--border-color);transition:transform .3s ease,box-shadow .3s ease}.feature-item:hover{transform:translateY(-5px);box-shadow:0 10px 30px rgba(0,0,0,.07)}.feature-icon{font-size:24px;color:var(--accent-purple);margin-top:5px}.feature-title{font-weight:600;font-size:18px}.feature-description{color:var(--text-light)}.feature-description a{color:var(--accent-purple);text-decoration:none;font-weight:500}.feature-description a:hover{text-decoration:underline}#features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:25px}.feature-item{display:flex;align-items:flex-start;gap:20px;background-color:var(--bg-white);padding:25px;border-radius:12px;border:1px solid var(--border-color);transition:transform .3s ease,box-shadow .3s ease}.feature-item:hover{transform:translateY(-5px);box-shadow:0 10px 30px rgba(0,0,0,.07)}.feature-icon{font-size:24px;color:var(--accent-purple);margin-top:5px}.feature-title{font-weight:600;font-size:18px}.feature-description{color:var(--text-light)}#previews-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:30px}.preview-card{border:1px solid var(--border-color);border-radius:12px;overflow:hidden;background-color:var(--bg-white);transition:transform .3s ease,box-shadow .3s ease}.preview-card:hover{transform:translateY(-5px);box-shadow:0 10px 30px rgba(0,0,0,.07)}.preview-image-placeholder{width:100%;aspect-ratio:16/9;background-color:var(--bg-light-gray);display:flex;align-items:center;justify-content:center;color:#ccc;font-size:18px;font-family:monospace}.preview-title{font-size:18px;font-weight:600;padding:20px;text-align:center}#project-story-content{display:flex;align-items:center;gap:60px}#project-story-text{flex:1}#project-story-title{font-size:32px;margin-bottom:20px;text-align:left}#project-story-description p{margin-bottom:20px;font-size:18px;color:var(--text-medium)}#project-story-visual{flex:1;text-align:center}#project-story-visual .visual-icon{font-size:150px;color:var(--accent-purple);opacity:.1}#installation-steps{display:flex;justify-content:space-between;gap:40px;margin-top:60px;position:relative}.step-card{flex:1;text-align:center}.step-number{width:60px;height:60px;line-height:60px;border-radius:50%;background-color:var(--accent-purple);color:var(--bg-white);font-size:24px;font-weight:700;margin:0 auto 20px auto;border:4px solid #f3f4f6;z-index:2;position:relative}.step-title{font-size:20px;font-weight:600;margin-bottom:10px}#installation-steps::before{content:'';position:absolute;width:calc(100% - 200px);height:2px;background-image:linear-gradient(to right,#ccc 50%,transparent 50%);background-size:10px 2px;top:30px;left:100px;z-index:1}#faq-container{max-width:800px;margin:0 auto}.faq-item{border-bottom:1px solid var(--border-color)}.faq-question{width:100%;background:0 0;border:none;text-align:left;padding:20px 0;font-size:18px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;color:var(--text-dark)}.faq-icon{font-style:normal;font-weight:700;font-size:24px;transition:transform .3s ease}.faq-question.active .faq-icon{transform:rotate(45deg)}.faq-answer{max-height:0;overflow:hidden;transition:max-height .4s ease-out;color:var(--text-medium)}.faq-answer p{padding-bottom:20px}.faq-answer a{color:var(--accent-purple);text-decoration:none;font-weight:500}.faq-answer a:hover{text-decoration:underline}#follow-us-form{display:flex;gap:10px;margin-top:30px;max-width:600px;margin-left:auto;margin-right:auto}#follow-us-email-input{flex-grow:1;padding:15px;font-size:16px;border:1px solid var(--border-color);border-radius:8px;transition:border-color .2s,box-shadow .2s}#follow-us-email-input:focus{outline:0;border-color:var(--accent-purple);box-shadow:0 0 0 3px rgba(139,92,246,.2)}#follow-us-submit-button{padding:15px 25px;font-size:16px;font-weight:600;border:none;border-radius:8px;background-color:var(--accent-purple);color:#fff;cursor:pointer;transition:background-color .2s}#follow-us-submit-button:hover{background-color:var(--accent-purple-dark)}#page-footer{background-color:var(--footer-bg);color:var(--footer-text);padding:80px 0}.footer-container{max-width:800px;margin:0 auto;text-align:center}#legal-tab-buttons{display:flex;justify-content:center;gap:10px;margin-bottom:30px;border-bottom:1px solid #374151;padding-bottom:15px}.legal-tab-button{background:0 0;border:none;color:var(--footer-text);padding:10px 20px;font-size:16px;font-weight:500;cursor:pointer;border-radius:8px;transition:background-color .2s,color .2s}.legal-tab-button:hover{background-color:#374151}.legal-tab-button.active{background-color:var(--accent-purple);color:#fff}#legal-tab-content{text-align:left;font-size:14px;line-height:1.7}.legal-content-panel{padding:20px;background-color:#2a374a;border-radius:8px}.legal-title{color:var(--bg-white);font-size:18px;margin-bottom:15px}.legal-text{color:#9ca3af}#copyright-text{margin-top:50px;padding-top:30px;border-top:1px solid #374151;font-size:13px;color:#6b7280;text-align:center}#demo-controls{display:flex;justify-content:center;align-items:center;gap:30px;flex-wrap:wrap;padding:20px;background-color:var(--bg-white);border:1px solid var(--border-color);border-radius:12px;margin-bottom:40px}.control-group{display:flex;flex-direction:column;gap:5px}.control-group label{font-size:14px;font-weight:500;color:var(--text-medium)}.control-group input[type=color]{width:100px;height:38px;padding:4px;border:1px solid var(--border-color);border-radius:6px;cursor:pointer}.control-group select{padding:8px 12px;border:1px solid var(--border-color);border-radius:6px;font-size:14px}#previews-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:30px;--demo-active-bg:#8B5CF6;--demo-active-text:#FFFFFF;--demo-inactive-bg:#F3F4F6;--demo-inactive-text:#374151;--demo-border-color:#D1D5DB}.preview-card{border:1px solid var(--border-color);border-radius:12px;background-color:var(--bg-white);padding:30px}.preview-title{font-size:18px;font-weight:600;text-align:center;margin-bottom:25px}.demo-wrapper{display:flex;justify-content:center;align-items:center;min-height:50px;font-size:14px}.preview-card .ctsc-button-demo-pair{display:flex;gap:8px}.preview-card .ctsc-demo-button{padding:.5em 1em;border-radius:6px;border:1px solid var(--demo-border-color);cursor:pointer;transition:all .2s ease;font-weight:700}.preview-card .ctsc-demo-button.is-active{background-color:var(--demo-active-bg);color:var(--demo-active-text);border-color:var(--demo-active-bg)}.preview-card .ctsc-demo-button.is-inactive{background-color:var(--demo-inactive-bg);color:var(--demo-inactive-text)}.preview-card .ctsc-slider-track-demo{display:flex;align-items:center;position:relative;background-color:var(--demo-inactive-bg);border-radius:50px;padding:4px;cursor:pointer}.preview-card .ctsc-slider-track-demo>span{flex:1;text-align:center;padding:.2em 1em;z-index:1;font-weight:700;color:var(--demo-active-bg)}.preview-card .ctsc-slider-thumb-demo{position:absolute;left:4px;top:4px;bottom:4px;background-color:var(--demo-active-bg);border-radius:50px;transition:all .3s ease;width:calc(50% - 4px);z-index:0}.preview-card .ctsc-slider-track-demo.is-traditional .ctsc-slider-thumb-demo{left:50%}.preview-card .ctsc-slider-track-demo.is-simplified .demo-simplified-text,.preview-card .ctsc-slider-track-demo.is-traditional .demo-traditional-text{color:var(--demo-active-text)}.preview-card .ctsc-dropdown-wrapper-demo{position:relative;display:inline-flex}.preview-card .ctsc-dropdown-demo{font-size:inherit;padding:.5em 2em .5em 1em;border-radius:6px;border:1px solid var(--demo-border-color);background-color:var(--demo-inactive-bg);color:var(--demo-inactive-text);-webkit-appearance:none;-moz-appearance:none;appearance:none;cursor:pointer;background-image:none}.preview-card .ctsc-dropdown-arrow-demo{position:absolute;top:50%;right:.7em;transform:translateY(-50%);width:1em;height:1em;fill:var(--demo-inactive-text);pointer-events:none}.preview-card .ctsc-radio-group-demo{display:flex;gap:15px;align-items:center}.preview-card .ctsc-radio-group-demo label{display:flex;align-items:center;gap:5px;cursor:pointer}.preview-card .ctsc-radio-group-demo input[type=radio]{accent-color:var(--demo-active-bg)}.preview-card .ctsc-segmented-control-demo{display:flex;border:1px solid var(--demo-border-color);border-radius:6px;overflow:hidden}.preview-card .ctsc-segment-demo{padding:.5em 1.2em;cursor:pointer;transition:all .2s ease;text-align:center;font-weight:700}.preview-card .ctsc-segment-demo:first-child{border-right:1px solid var(--demo-border-color)}.preview-card .ctsc-segment-demo.is-active{background-color:var(--demo-active-bg);color:var(--demo-active-text)}.preview-card .ctsc-segment-demo.is-inactive{background-color:var(--demo-inactive-bg);color:var(--demo-inactive-text)}@media (max-width:1024px){#lang-switcher,#main-nav{display:none}#hamburger-menu-btn{display:block}.header-container{justify-content:space-between;width:100%}#installation-steps{flex-direction:column;gap:40px}#installation-steps::before{display:none}#project-story-content{flex-direction:column;text-align:center}#project-story-text{order:2}#project-story-visual{order:1}#project-story-title{text-align:center}}@media (max-width:768px){#hero-headline{font-size:40px}#hero-subtitle{font-size:18px}.section-title{font-size:30px}.section-subtitle{font-size:16px}#follow-us-form{flex-direction:column}#features-grid{grid-template-columns:1fr}#legal-tab-buttons{flex-wrap:wrap}}</style></head><body><header id="page-header"><div class="container header-container"><div id="logo"><a id="logo-link" href="https://ttboxbox.github.io/chinese-traditional-simplified-conversion/"><span id="logo-main-text">Chinese</span><span id="logo-accent-text">Conversion</span></a></div><nav id="main-nav"><a class="nav-link" href="#about-section"><span lang="en">About</span><span lang="zh-Hant" class="hidden">關於</span><span lang="zh-Hans" class="hidden">关于</span></a><a class="nav-link" href="#features-section"><span lang="en">Features</span><span lang="zh-Hant" class="hidden">主要功能</span><span lang="zh-Hans" class="hidden">主要功能</span></a><a class="nav-link" href="#previews-section"><span lang="en">Demos</span><span lang="zh-Hant" class="hidden">樣式預覽</span><span lang="zh-Hans" class="hidden">样式预览</span></a><a class="nav-link" href="#installation-section"><span lang="en">Installation & Usage</span><span lang="zh-Hant" class="hidden">安裝 & 使用</span><span lang="zh-Hans" class="hidden">安装 & 使用</span></a><a class="nav-link" href="#faq-section"><span lang="en">FAQ</span><span lang="zh-Hant" class="hidden">常見問題</span><span lang="zh-Hans" class="hidden">常见问题</span></a></nav><div id="lang-switcher"><button class="lang-button" data-lang="en">EN</button><button class="lang-button" data-lang="zh-Hant">繁中</button><button class="lang-button" data-lang="zh-Hans">简中</button></div><button id="hamburger-menu-btn" aria-label="Open menu"><span class="bar"></span><span class="bar"></span><span class="bar"></span></button></div></header><div id="mobile-menu-overlay"></div><nav id="mobile-menu-panel"><div id="mobile-menu-header"><button id="mobile-menu-close-btn" aria-label="Close menu">×</button></div><div id="mobile-menu-nav"><a class="mobile-nav-link" href="#about-section"><span class="icon">💡</span><span><span lang="en">About</span><span lang="zh-Hant" class="hidden">關於</span><span lang="zh-Hans" class="hidden">关于</span></span></a><a class="mobile-nav-link" href="#features-section"><span class="icon">✨</span><span><span lang="en">Features</span><span lang="zh-Hant" class="hidden">主要功能</span><span lang="zh-Hans" class="hidden">主要功能</span></span></a><a class="mobile-nav-link" href="#previews-section"><span class="icon">🎨</span><span><span lang="en">Demos</span><span lang="zh-Hant" class="hidden">樣式預覽</span><span lang="zh-Hans" class="hidden">样式预览</span></span></a><a class="mobile-nav-link" href="#installation-section"><span class="icon">⚙️</span><span><span lang="en">Installation & Usage</span><span lang="zh-Hant" class="hidden">安裝 & 使用</span><span lang="zh-Hans" class="hidden">安装 & 使用</span></span></a><a class="mobile-nav-link" href="#faq-section"><span class="icon">❓</span><span><span lang="en">FAQ</span><span lang="zh-Hant" class="hidden">常見問題</span><span lang="zh-Hans" class="hidden">常见问题</span></span></a></div><div id="mobile-menu-footer-nav"><div id="mobile-lang-switcher"><span><span lang="en">Language</span><span lang="zh-Hant" class="hidden">語言</span><span lang="zh-Hans" class="hidden">语言</span></span><div><button class="lang-button" data-lang="en">EN</button><button class="lang-button" data-lang="zh-Hant">繁中</button><button class="lang-button" data-lang="zh-Hans">简中</button></div></div></div><a id="mobile-menu-cta" href="https://shop.yorubox.eu/shop/uncategorized/wp-chinese-traditional-simplified-conversion/"><span lang="en">Download Now</span><span lang="zh-Hant" class="hidden">立即下載</span><span lang="zh-Hans" class="hidden">立即下载</span></a></nav><main id="main-content"><section id="hero-section" class="section-wrapper"><div class="container"><h1 id="hero-headline"><span lang="en">The Smart Way to Switch Chinese Characters.</span><span lang="zh-Hant" class="hidden">WordPress 自動繁簡字體切換插件</span><span lang="zh-Hans" class="hidden">WordPress 自动繁简字体切换插件</span><br><span class="highlight"><span id="typing-target"></span><span class="typing-cursor"></span></span></h1><p id="hero-subtitle"><span lang="en">The ultimate WordPress plugin to seamlessly convert between Traditional and Simplified Chinese. Expand your reach with a single click.</span><span lang="zh-Hant" class="hidden">終極的 WordPress 插件，實現繁體與簡體中文的無縫轉換。一鍵點擊，拓展您的讀者群。</span><span lang="zh-Hans" class="hidden">终极的 WordPress 插件，实现繁体与简体中文的无缝转换。一键点击，拓展您的读者群。</span></p><a id="hero-cta-button" href="https://shop.yorubox.eu/shop/uncategorized/wp-chinese-traditional-simplified-conversion"><span lang="en">Download for Free</span><span lang="zh-Hant" class="hidden">免費下載</span><span lang="zh-Hans" class="hidden">免费下载</span></a></div></section><section id="about-section" class="section-wrapper fade-in-section"><div class="container"><div id="project-story-content"><div id="project-story-text"><h2 id="project-story-title"><span lang="en">About This Project</span><span lang="zh-Hant" class="hidden">關於本專案</span><span lang="zh-Hans" class="hidden">关于本专案</span></h2><div id="project-story-description"><p><span lang="en">Chinese Traditional-Simplified Conversion was born out of a simple idea: a simple plugin to switch between traditional and simplified Chinese so that users can easily read articles regardless of their preference. Allow more websites to easily convert from simplified fonts to traditional fonts or from traditional Chinese characters to simplified Chinese characters.</span><span lang="zh-Hant" class="hidden">Chinese Traditional-Simplified Conversion 誕生於一個簡單的想法：一個簡單的插件來切換繁體和簡體字讓不管是偏好哪個字體的用戶都可以輕鬆的閱讀文章。 讓更多的網站可以輕鬆的從簡體字體轉換成繁體字體或是從繁體漢字轉換成簡體漢字。</span><span lang="zh-Hans" class="hidden">诞生于一个简单的想法：一个简单的插件来切换繁体和简体字让不管是偏好哪个字体的用户都可以轻松的阅读文章。让更多的网站可以轻松的从简字体转换成繁字体或是从繁汉字转换成简汉字。</span></p></div></div><div id="project-story-visual"><div class="visual-icon">🚀</div></div></div></div></section><section id="features-section" class="section-wrapper fade-in-section"><div class="container"><h2 class="section-title"><span lang="en">Main Features</span><span lang="zh-Hant" class="hidden">主要功能</span><span lang="zh-Hans" class="hidden">主要功能</span></h2><div id="features-grid"><div class="feature-item"><span class="feature-icon">🔄</span><div><h3 class="feature-title"><span lang="en">Automatic S/T Conversion</span><span lang="zh-Hant" class="hidden">自動切換繁體／簡體文字</span><span lang="zh-Hans" class="hidden">自动切换繁体／简体文字</span></h3><p class="feature-description"><span lang="en">Converts all text on the page instantly.</span><span lang="zh-Hant" class="hidden">即時轉換頁面上的所有文字。</span><span lang="zh-Hans" class="hidden">即时转换页面上的所有文字。</span></p></div></div><div class="feature-item"><span class="feature-icon">🎯</span><div><h3 class="feature-title"><span lang="en">Shortcode Placement</span><span lang="zh-Hant" class="hidden">手動加入按鈕位置</span><span lang="zh-Hans" class="hidden">手动加入按钮位置</span></h3><p class="feature-description"><span lang="en">Use `[chinese_converter]` to place the toggle anywhere.</span><span lang="zh-Hant" class="hidden">使用 `[chinese_converter]` 短代碼將切換器放置在任何位置。</span><span lang="zh-Hans" class="hidden">使用 `[chinese_converter]` 短代码将切换器放置在任何位置。</span></p></div></div><div class="feature-item"><span class="feature-icon">🎨</span><div><h3 class="feature-title"><span lang="en">Full Style Customization</span><span lang="zh-Hant" class="hidden">自訂顏色與文字樣式</span><span lang="zh-Hans" class="hidden">自订颜色与文字样式</span></h3><p class="feature-description"><span lang="en">Control colors, fonts, border size, radius, and more.</span><span lang="zh-Hant" class="hidden">自由控制顏色、字體、邊框大小、圓角等。</span><span lang="zh-Hans" class="hidden">自由控制颜色、字体、边框大小、圆角等。</span></p></div></div><div class="feature-item"><span class="feature-icon">📚</span><div><h3 class="feature-title"><span lang="en">Multiple Layout Templates</span><span lang="zh-Hant" class="hidden">多種內建樣式可選</span><span lang="zh-Hans" class="hidden">多种内建样式可选</span></h3><p class="feature-description"><span lang="en">Choose from segmented controls, buttons, dropdowns, and more.</span><span lang="zh-Hant" class="hidden">提供分段控制器、按鈕、下拉選單等多種樣式。</span><span lang="zh-Hans" class="hidden">提供分段控制器、按钮、下拉菜单等多种样式。</span></p></div></div><div class="feature-item"><span class="feature-icon">💾</span><div><h3 class="feature-title"><span lang="en">Import/Export Styles</span><span lang="zh-Hant" class="hidden">匯入／匯出造型設定</span><span lang="zh-Hans" class="hidden">汇入／汇出造型设定</span></h3><p class="feature-description"><span lang="en">Save and share your custom designs with a single click.</span><span lang="zh-Hant" class="hidden">一鍵保存並分享您的自訂設計。</span><span lang="zh-Hans" class="hidden">一键保存并分享您的自订设计。</span></p></div></div><div class="feature-item"><span class="feature-icon">🌙</span><div><h3 class="feature-title"><span lang="en">Dark Mode Ready</span><span lang="zh-Hant" class="hidden">支援深色模式</span><span lang="zh-Hans" class="hidden">支持深色模式</span></h3><p class="feature-description"><span lang="en">Customizable colors ensure the toggle looks great on any background.</span><span lang="zh-Hant" class="hidden">可自訂的顏色確保切換器在任何背景下都美觀。</span><span lang="zh-Hans" class="hidden">可自定义的颜色确保切换器在任何背景下都美观。</span></p></div></div><div class="feature-item"><span class="feature-icon">🍪</span><div><h3 class="feature-title"><span lang="en">Remember User Preference</span><span lang="zh-Hant" class="hidden">保存使用者語言偏好</span><span lang="zh-Hans" class="hidden">保存使用者语言偏好</span></h3><p class="feature-description"><span lang="en">Uses a cookie to remember the visitor's last choice.</span><span lang="zh-Hant" class="hidden">使用 Cookie 記住訪客的最後選擇。</span><span lang="zh-Hans" class="hidden">使用 Cookie 记住访客的最后选择。</span></p></div></div><div class="feature-item"><span class="feature-icon">🔍</span><div><h3 class="feature-title"><span lang="en">Unified Chinese Search</span><span lang="zh-Hant" class="hidden">搜尋欄支援繁簡體文字</span><span lang="zh-Hans" class="hidden">搜索栏支持繁简体文字</span></h3><p class="feature-description"><span lang="en">Searching for a term finds results in both S/T versions.</span><span lang="zh-Hant" class="hidden">搜尋一個詞彙可同時找到簡體和繁體版本的結果。</span><span lang="zh-Hans" class="hidden">搜寻一个词汇可同时找到简体和繁体版本的结果。</span></p></div></div><div class="feature-item"><span class="feature-icon">🌐</span><div><h3 class="feature-title"><span lang="en">Browser Language Detection</span><span lang="zh-Hant" class="hidden">自動判斷使用者瀏覽器語言</span><span lang="zh-Hans" class="hidden">自动判断使用者浏览器语言</span></h3><p class="feature-description"><span lang="en">Automatically shows the right version to first-time visitors.</span><span lang="zh-Hant" class="hidden">為首次訪問者自動顯示正確的語言版本。</span><span lang="zh-Hans" class="hidden">为首次访问者自动显示正确的语言版本。</span></p></div></div><div class="feature-item"><span class="feature-icon">🧩</span><div><h3 class="feature-title"><span lang="en">Plugin Compatible</span><span lang="zh-Hant" class="hidden">插件兼容性</span><span lang="zh-Hans" class="hidden">插件兼容性</span></h3><p class="feature-description"><span lang="en">Designed to work alongside caching and multilingual plugins.</span><span lang="zh-Hant" class="hidden">旨在與快取和多語言插件協同工作。</span><span lang="zh-Hans" class="hidden">旨在与缓存和多语言插件协同工作。</span></p></div></div><div class="feature-item"><span class="feature-icon">💡</span><div><h3 class="feature-title"><span lang="en">Smart Visibility</span><span lang="zh-Hant" class="hidden">非中文模式自動關閉切換鍵</span><span lang="zh-Hans" class="hidden">非中文模式自动关闭切换键</span></h3><p class="feature-description"><span lang="en">Hides the toggle on non-Chinese pages to avoid confusion.</span><span lang="zh-Hant" class="hidden">在非中文頁面上自動隱藏切換器，避免混淆。</span><span lang="zh-Hans" class="hidden">在非中文页面上自动隐藏切换器，避免混淆。</span></p></div></div><div class="feature-item"><span class="feature-icon">➕</span><div><h3 class="feature-title"><span lang="en">More Features to Come!</span><span lang="zh-Hant" class="hidden">更多功能即將推出！</span><span lang="zh-Hans" class="hidden">更多功能即将推出！</span></h3><p class="feature-description"><span lang="en">Have an idea? Let us know!</span><span lang="zh-Hant" class="hidden">如果您有任何希望加入的功能，歡迎告訴我們！</span><span lang="zh-Hans" class="hidden">如果您有任何希望加入的功能，欢迎告诉我们！</span></p></div></div></div></div></section><section id="previews-section" class="section-wrapper fade-in-section"><div class="container"><h2 class="section-title"><span lang="en">Live Demo Playground</span><span lang="zh-Hant" class="hidden">樣式預覽</span><span lang="zh-Hans" class="hidden">样式预览</span></h2><p class="section-subtitle"><span lang="en">Try out the different layouts and styles in real-time! See how the toggle can perfectly match your site's design.</span><span lang="zh-Hant" class="hidden">即時體驗不同的佈局和風格！看看切換器如何完美匹配您的網站設計。</span><span lang="zh-Hans" class="hidden">即时体验不同的布局和风格！看看切换器如何完美匹配您的网站设计。</span></p><div id="demo-controls"><div class="control-group"><label for="demo-text-style">Display Text</label><select id="demo-text-style"><option value="char">简 / 繁</option><option value="code">CN / TW</option><option value="full">簡化字 / 正體字</option></select></div><div class="control-group"><label for="demo-active-bg-color">Active BG</label><input type="color" id="demo-active-bg-color" value="#8B5CF6"></div><div class="control-group"><label for="demo-active-text-color">Active Text</label><input type="color" id="demo-active-text-color" value="#FFFFFF"></div><div class="control-group"><label for="demo-inactive-bg-color">Inactive BG</label><input type="color" id="demo-inactive-bg-color" value="#F3F4F6"></div><div class="control-group"><label for="demo-inactive-text-color">Inactive Text</label><input type="color" id="demo-inactive-text-color" value="#374151"></div></div><div id="previews-grid"><div class="preview-card"><h3 class="preview-title">Segmented Control</h3><div class="demo-wrapper"><div class="ctsc-segmented-control-demo" data-layout="segmented" data-state="simplified"><div class="ctsc-segment-demo is-active" data-lang="simplified"><span class="demo-text"></span></div><div class="ctsc-segment-demo is-inactive" data-lang="traditional"><span class="demo-text"></span></div></div></div></div><div class="preview-card"><h3 class="preview-title">Button Pair</h3><div class="demo-wrapper"><div class="ctsc-button-demo-pair" data-layout="button_pair" data-state="simplified"><button type="button" class="ctsc-demo-button is-active" data-lang="simplified"><span class="demo-text"></span></button><button type="button" class="ctsc-demo-button is-inactive" data-lang="traditional"><span class="demo-text"></span></button></div></div></div><div class="preview-card"><h3 class="preview-title">Slider Toggle</h3><div class="demo-wrapper"><div class="ctsc-slider-track-demo is-simplified" data-layout="slider" data-state="simplified"><div class="ctsc-slider-thumb-demo"></div><span class="demo-simplified-text demo-text"></span><span class="demo-traditional-text demo-text"></span></div></div></div><div class="preview-card"><h3 class="preview-title">Dropdown Menu</h3><div class="demo-wrapper"><div class="ctsc-dropdown-wrapper-demo" data-layout="dropdown"><select class="ctsc-dropdown-demo"><option value="simplified"><span class="demo-text"></span></option><option value="traditional"><span class="demo-text"></span></option></select><svg class="ctsc-dropdown-arrow-demo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M7 10l5 5 5-5H7z"></path></svg></div></div></div><div class="preview-card"><h3 class="preview-title">Radio Buttons</h3><div class="demo-wrapper"><div class="ctsc-radio-group-demo" data-layout="radio"><label><input type="radio" name="demo-radio" value="simplified" checked="checked"><span class="demo-text"></span></label><label><input type="radio" name="demo-radio" value="traditional"><span class="demo-text"></span></label></div></div></div><div class="preview-card"><div><h3 class="preview-title"><span lang="en">More?</span><span lang="zh-Hant" class="hidden">更多造型?</span><span lang="zh-Hans" class="hidden">更多造型?</span></h3></div></div></div></div></section><section id="installation-section" class="section-wrapper bg-gray fade-in-section"><div class="container"><h2 class="section-title"><span lang="en">Installation & Usage</span><span lang="zh-Hant" class="hidden">安裝 & 使用</span><span lang="zh-Hans" class="hidden">安装 & 使用</span></h2><div id="installation-steps"><div class="step-card"><div class="step-number">1</div><h3 class="step-title"><span lang="en">Install</span><span lang="zh-Hant" class="hidden">安裝</span><span lang="zh-Hans" class="hidden">安装</span></h3><p class="step-description"><span lang="en">Like any other plugin, download, upload to your WordPress site, and activate it after installation.</span><span lang="zh-Hant" class="hidden">像安裝其他外掛一樣，下載並上傳到 WordPress 網站上，在安裝結束後啟用插件。</span><span lang="zh-Hans" class="hidden">像安装其他插件一样，下载并上传到 WordPress 网站上，在安装结束后启用插件。</span></p></div><div class="step-card"><div class="step-number">2</div><h3 class="step-title"><span lang="en">Customize Style</span><span lang="zh-Hant" class="hidden">自訂造型</span><span lang="zh-Hans" class="hidden">自订造型</span></h3><p class="step-description"><span lang="en">On the plugin's settings page, you can freely choose the display mode and customize text, colors, and more.</span><span lang="zh-Hant" class="hidden">在插件的設定頁面中你可以自由決定顯示模式和自訂文字、顏色等。</span><span lang="zh-Hans" class="hidden">在插件的设定页面中你可以自由决定显示模式和自定义文字、颜色等。</span></p></div><div class="step-card"><div class="step-number">3</div><h3 class="step-title"><span lang="en">Start Using!</span><span lang="zh-Hant" class="hidden">開始使用！</span><span lang="zh-Hans" class="hidden">开始使用！</span></h3><p class="step-description"><span lang="en">Enable "Smart Display" to automatically insert the toggle, or use the shortcode for manual placement!</span><span lang="zh-Hant" class="hidden">開啟 "Add Toggle to Menu" 後將自動插入轉換鍵或是使用短代碼!</span><span lang="zh-Hans" class="hidden">开启 "Add Toggle to Menu" 后将自动插入转换键或是使用短代码!</span></p></div></div></div></section><section id="faq-section" class="section-wrapper fade-in-section"><div class="container"><h2 class="section-title"><span lang="en">Frequently Asked Questions</span><span lang="zh-Hant" class="hidden">常見問題</span><span lang="zh-Hans" class="hidden">常见问题</span></h2><div id="faq-container"><div class="faq-item"><button class="faq-question"><span><span lang="en">Can I customize the style of the toggle button?</span><span lang="zh-Hant" class="hidden">我可以自訂切換按鈕的樣式嗎？</span><span lang="zh-Hans" class="hidden">我可以自定义切换按钮的样式吗？</span></span><i class="faq-icon">+</i></button><div class="faq-answer"><p><span lang="en">Absolutely! The plugin's settings page gives you full control over colors, fonts, border size, radius, and more to perfectly match your theme.</span><span lang="zh-Hant" class="hidden">當然可以！插件的設定頁面讓您完全控制顏色、字體、邊框大小、圓角等，以完美匹配您的主題。</span><span lang="zh-Hans" class="hidden">当然可以！插件的设定页面让您完全控制颜色、字体、边框大小、圆角等，以完美匹配您的主题。</span></p></div></div><div class="faq-item"><button class="faq-question"><span><span lang="en">What styles can I choose from?</span><span lang="zh-Hant" class="hidden">有哪些造型可以選擇？</span><span lang="zh-Hans" class="hidden">有哪些造型可以选择？</span></span><i class="faq-icon">+</i></button><div class="faq-answer"><p><span lang="en">You can choose from five built-in layouts: Segmented Control, Button Pair, Slider Toggle, Dropdown Menu, and Radio Buttons.</span><span lang="zh-Hant" class="hidden">您可以從五種內建佈局中選擇：分段控制器、按鈕對、滑動開關、下拉選單和圓形按鈕。</span><span lang="zh-Hans" class="hidden">您可以从五种内建布局中选择：分段控制器、按钮对、滑动开关、下拉菜单和圆形按钮。</span></p></div></div><div class="faq-item"><button class="faq-question"><span><span lang="en">Can I customize the display text?</span><span lang="zh-Hant" class="hidden">我可以自訂顯示文字嗎？</span><span lang="zh-Hans" class="hidden">我可以自定义显示文字吗？</span></span><i class="faq-icon">+</i></button><div class="faq-answer"><p><span lang="en">Yes. You can choose between different text formats like "简 / 繁", "CN / TW", or the full text "簡化字 / 正體字".</span><span lang="zh-Hant" class="hidden">可以。您可以選擇不同的文字格式，例如「简 / 繁」、「CN / TW」或完整文字「簡化字 / 正體字」。</span><span lang="zh-Hans" class="hidden">可以。您可以选择不同的文字格式，例如“简 / 繁”、“CN / TW”或完整文字“简化字 / 正体字”。</span></p></div></div><div class="faq-item"><button class="faq-question"><span><span lang="en">Can I use this with other multilingual plugins?</span><span lang="zh-Hant" class="hidden">我可以同時使用其他多語言插件嗎？</span><span lang="zh-Hans" class="hidden">我可以同时使用其他多语言插件吗？</span></span><i class="faq-icon">+</i></button><div class="faq-answer"><p><span lang="en">Yes. This plugin performs client-side conversion, so it works independently and should not conflict with backend translation plugins like WPML or Polylang. It acts as a user-friendly enhancement on top of your site's primary language.</span><span lang="zh-Hant" class="hidden">可以。本插件執行客戶端轉換，因此它獨立運作，不應與 WPML 或 Polylang 等後端翻譯插件衝突。它是在您網站主要語言之上的用戶友好功能增強。</span><span lang="zh-Hans" class="hidden">可以。本插件执行客户端转换，因此它独立运作，不应与 WPML 或 Polylang 等后端翻译插件冲突。它是在您网站主要语言之上的用户友好功能增强。</span></p></div></div><div class="faq-item"><button class="faq-question"><span><span lang="en">Can you add [feature X]?</span><span lang="zh-Hant" class="hidden">可以增加___功能嗎？</span><span lang="zh-Hans" class="hidden">可以增加___功能吗？</span></span><i class="faq-icon">+</i></button><div class="faq-answer"><p><span lang="en">Of course! We are always open to suggestions. Please<a href="https://yorubox.eu/contact/">contact us using the form below</a>with your idea.</span><span lang="zh-Hant" class="hidden">當然可以！我們隨時歡迎建議。請<a href="https://yorubox.eu/contact/">透過表單聯絡我們</a>，告訴我們您的想法。</span><span lang="zh-Hans" class="hidden">当然可以！我们随时欢迎建议。请<a href="https://yorubox.eu/contact/">透过下方的表单联系我们</a>，告诉我们您的想法。</span></p></div></div></div></div></section></main><footer id="page-footer"><div class="container footer-container"><div id="legal-tab-container"><div id="legal-tab-buttons"><button class="legal-tab-button active" data-target="#info-content"><span lang="en">Info</span><span lang="zh-Hant" class="hidden">網站資訊</span><span lang="zh-Hans" class="hidden">网站信息</span></button><button class="legal-tab-button" data-target="#privacy-content"><span lang="en">Privacy</span><span lang="zh-Hant" class="hidden">隱私政策</span><span lang="zh-Hans" class="hidden">隐私政策</span></button><button class="legal-tab-button" data-target="#license-content"><span lang="en">License</span><span lang="zh-Hant" class="hidden">授權條款</span><span lang="zh-Hans" class="hidden">授权条款</span></button></div><div id="legal-tab-content"><div id="info-content" class="legal-content-panel"><h4 class="legal-title"><span lang="en">About This Site</span><span lang="zh-Hant" class="hidden">網站資訊</span><span lang="zh-Hans" class="hidden">网站信息</span></h4><p class="legal-text"><span lang="en">This website serves as the official homepage for the Chinese Traditional-Simplified Conversion plugin. Our goal is to provide a simple, powerful, and free tool that helps WordPress creators bridge the language gap between Simplified and Traditional Chinese-speaking audiences. We believe in an open and accessible web for everyone, regardless of their preferred reading characters.</span><span lang="zh-Hant" class="hidden">本網站是 Chinese Traditional-Simplified Conversion 插件的官方主頁。我們的目標是提供一個簡單、強大且免費的工具，幫助 WordPress 創作者跨越簡體和繁體中文讀者之間的語言鴻溝。我們相信，無論使用者偏好何種閱讀字體，網路都應該是開放且易於訪問的。</span><span lang="zh-Hans" class="hidden">本网站是 Chinese Traditional-Simplified Conversion 插件的官方主页。我们的目标是提供一个简单、强大且免费的工具，帮助 WordPress 创作者跨越简体和繁体中文读者之间的语言鸿沟。我们相信，无论用户偏好何种阅读字体，网络都应该是开放且易于访问的。</span></p></div><div id="privacy-content" class="legal-content-panel hidden"><h4 class="legal-title"><span lang="en">Privacy Policy</span><span lang="zh-Hant" class="hidden">隱私政策</span><span lang="zh-Hans" class="hidden">隐私政策</span></h4><p class="legal-text"><span lang="en">Our plugin, Chinese Traditional-Simplified Conversion, processes content locally in the user's browser. It does not transmit any content or personal data to us.</span><span lang="zh-Hant" class="hidden">我們的插件 Chinese Traditional-Simplified Conversion 在用戶的瀏覽器中本地處理內容，不會傳輸任何內容或個人數據給我們。</span><span lang="zh-Hans" class="hidden">我们的插件 Chinese Traditional-Simplified Conversion 在用户的浏览器中本地处理内容，不会传输任何内容或个人数据给我们。</span></p></div><div id="license-content" class="legal-content-panel hidden"><h4 class="legal-title"><span lang="en">License & Disclaimer</span><span lang="zh-Hant" class="hidden">授權與免責聲明</span><span lang="zh-Hans" class="hidden">授权与免责声明</span></h4><p class="legal-text"><span lang="en">This plugin is licensed under the GPLv2 or later. It is provided "as is", without warranty of any kind. We hold no responsibility for any issues arising from its use.</span><span lang="zh-Hant" class="hidden">本插件根據 GPLv2 或更新版本授權。本插件按“原樣”提供，不附帶任何形式的保證。我們對因使用本工具而導致的任何問題概不負責。</span><span lang="zh-Hans" class="hidden">本插件根据 GPLv2 或更新版本授权。本插件按“原样”提供，不附带任何形式的保证。我们对因使用本工具而导致的任何问题概不负责。</span></p></div></div></div><p id="copyright-text"><span lang="en">©<span class="current-year"></span>YoruBox. All Rights Reserved.</span><span lang="zh-Hant" class="hidden">©<span class="current-year"></span>YoruBox. 版權所有。</span><span lang="zh-Hans" class="hidden">©<span class="current-year"></span>YoruBox. 版权所有。</span></p></div></footer><script>!function(t,a,e,n){function c(){if(!a.getElementById("taku-js")){var t=a.getElementsByTagName(n)[0],e=a.createElement(n);e.type="text/javascript",e.async=!0,e.src="https://cdn.taku-app.com/js/latest.js",t.parentNode.insertBefore(e,t)}}if("function"!=typeof t.Taku){var o=function(){o.q.push(arguments)};o.q=[],t.Taku=o,"complete"===a.readyState?c():t.attachEvent?t.attachEvent("onload",c):t.addEventListener("load",c,!1)}}(window,document,0,"script"),window.Taku("news:boot",{api_public_key:"58c556f5c00f03798ed9972b06e4c7cb"})</script><script>document.addEventListener('DOMContentLoaded', () => {
-          // --- Main Page Elements ---
-          const body = document.querySelector('body');
-          const hamburgerBtn = document.getElementById('hamburger-menu-btn');
-          const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
-          const mobileMenuCloseBtn = document.getElementById('mobile-menu-close-btn');
-          const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
-          const allLangButtons = document.querySelectorAll('.lang-button');
-          const translatableElements = document.querySelectorAll('span[lang]');
-          const faqQuestions = document.querySelectorAll('.faq-question');
-          const faders = document.querySelectorAll('.fade-in-section');
-          const newsletterForm = document.getElementById('follow-us-form');
-          const tabButtons = document.querySelectorAll('.legal-tab-button');
-          const tabPanels = document.querySelectorAll('.legal-content-panel');
-
-          // --- Typing Effect Elements & Config ---
-          const typingTarget = document.getElementById('typing-target');
-          const typingPhrases = {
-              en: "Convert Simplified / Traditional.",
-              "zh-Hant": "自動轉換簡體／繁體漢字",
-              "zh-Hans": "自动转换简体／繁体汉字"
-          };
-          let typingTimer;
-          let isDeleting = false;
-          let charIndex = 0;
-
-          // --- LOGIC FUNCTIONS ---
-          // --- Interactive Demo Elements ---
-          const demoGrid = document.getElementById('previews-grid');
-          const textStyleSelect = document.getElementById('demo-text-style');
-          const colorInputs = {
-              activeBg: document.getElementById('demo-active-bg-color'),
-              activeText: document.getElementById('demo-active-text-color'),
-              inactiveBg: document.getElementById('demo-inactive-bg-color'),
-              inactiveText: document.getElementById('demo-inactive-text-color')
-          };
-          const allDemos = demoGrid ? demoGrid.querySelectorAll('[data-layout]') : [];
-
-          // --- Demo Data ---
-          const textSets = {
-              char: { simplified: '简', traditional: '繁' },
-              code: { simplified: 'CN', traditional: 'TW' },
-              full: { simplified: '簡化字', traditional: '正體字' }
-          };
-          // Mobile Menu Logic
-          const openMenu = () => body.classList.add('menu-open');
-          const closeMenu = () => body.classList.remove('menu-open');
-          if(hamburgerBtn) hamburgerBtn.addEventListener('click', openMenu);
-          if(mobileMenuCloseBtn) mobileMenuCloseBtn.addEventListener('click', closeMenu);
-          if(mobileMenuOverlay) mobileMenuOverlay.addEventListener('click', closeMenu);
-          if(mobileNavLinks) mobileNavLinks.forEach(link => link.addEventListener('click', closeMenu));
-
-          // Language Switcher Logic
-          const switchLanguage = (targetLang) => {
-              translatableElements.forEach(el => el.classList.toggle('hidden', el.getAttribute('lang') !== targetLang));
-              allLangButtons.forEach(button => button.classList.toggle('active', button.dataset.lang === targetLang));
-              localStorage.setItem('preferredLang', targetLang);
-              document.documentElement.lang = targetLang;
-              // Restart typing animation with the new language
-              if (typingTarget) {
-                  charIndex = 0; // Reset index
-                  isDeleting = false; // Start by typing
-                  startTypingAnimation();
-              }
-          };
-          if(allLangButtons.length > 0) allLangButtons.forEach(button => button.addEventListener('click', (e) => { e.stopPropagation(); switchLanguage(e.currentTarget.dataset.lang); }));
-
-          // Typing Animation Logic
-          const startTypingAnimation = () => {
-              if (!typingTarget) return;
-              clearTimeout(typingTimer);
-              const currentLang = document.documentElement.lang || 'en';
-              const textToAnimate = typingPhrases[currentLang] || typingPhrases['en'];
-              let typeSpeed = 150;
-
-              if (isDeleting) {
-                  typeSpeed = 75;
-                  typingTarget.textContent = textToAnimate.substring(0, charIndex - 1);
-                  charIndex--;
-              } else {
-                  typingTarget.textContent = textToAnimate.substring(0, charIndex + 1);
-                  charIndex++;
-              }
-
-              if (!isDeleting && charIndex === textToAnimate.length) {
-                  typeSpeed = 3000; // Pause for 3 seconds
-                  isDeleting = true;
-              } else if (isDeleting && charIndex === 0) {
-                  isDeleting = false;
-                  typeSpeed = 500; // Pause before re-typing
-              }
-              typingTimer = setTimeout(startTypingAnimation, typeSpeed);
-          };
-
-          // FAQ Accordion Logic
-          if(faqQuestions.length > 0) faqQuestions.forEach(question => {
-              question.addEventListener('click', () => {
-                  const answer = question.nextElementSibling, isActive = question.classList.contains('active');
-                  faqQuestions.forEach(q => { q.classList.remove('active'); q.nextElementSibling.style.maxHeight = null; });
-                  if (!isActive) { question.classList.add('active'); answer.style.maxHeight = answer.scrollHeight + "px"; }
-              });
-          });
-
-          // Section Fade-in Logic
-          if(faders.length > 0) {
-              const appearOnScroll = new IntersectionObserver((entries, observer) => {
-                  entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); } });
-              }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
-              faders.forEach(fader => appearOnScroll.observe(fader));
-          }
-
-          // Newsletter Form Logic
-          if(newsletterForm) newsletterForm.addEventListener('submit', (e) => { e.preventDefault(); alert('Thank you for your interest!'); document.getElementById('follow-us-email-input').value = ''; });
-
-          // Footer Tabs Logic
-          if(tabButtons.length > 0) tabButtons.forEach(button => {
-              button.addEventListener('click', () => {
-                  tabButtons.forEach(btn => btn.classList.remove('active'));
-                  button.classList.add('active');
-                  const targetPanelId = button.dataset.target;
-                  tabPanels.forEach(panel => { panel.classList.toggle('hidden', `#${panel.id}` !== targetPanelId); });
-              });
-          });
-
-          // Copyright Year Logic
-          const setCopyrightYear = () => { document.querySelectorAll('.current-year').forEach(span => span.textContent = new Date().getFullYear()); };
-          // --- Interactive Demo Logic ---
-          if (demoGrid) {
-              const updateDemoColors = () => {
-                  demoGrid.style.setProperty('--demo-active-bg', colorInputs.activeBg.value);
-                  demoGrid.style.setProperty('--demo-active-text', colorInputs.activeText.value);
-                  demoGrid.style.setProperty('--demo-inactive-bg', colorInputs.inactiveBg.value);
-                  demoGrid.style.setProperty('--demo-inactive-text', colorInputs.inactiveText.value);
-              };
-
-              const updateDemoText = () => {
-                  const selectedStyle = textStyleSelect.value;
-                  const texts = textSets[selectedStyle];
-                  allDemos.forEach(demo => {
-                      const layout = demo.dataset.layout;
-                      if (layout === 'dropdown') {
-                          demo.querySelector('option[value="simplified"]').textContent = texts.simplified;
-                          demo.querySelector('option[value="traditional"]').textContent = texts.traditional;
-                      } else if (layout === 'radio') {
-                          demo.querySelector('input[value="simplified"]').nextElementSibling.textContent = texts.simplified;
-                          demo.querySelector('input[value="traditional"]').nextElementSibling.textContent = texts.traditional;
-                      } else if (layout === 'slider') {
-                          demo.querySelector('.demo-simplified-text').textContent = texts.simplified;
-                          demo.querySelector('.demo-traditional-text').textContent = texts.traditional;
-                      } else {
-                          demo.querySelector('[data-lang="simplified"] .demo-text').textContent = texts.simplified;
-                          demo.querySelector('[data-lang="traditional"] .demo-text').textContent = texts.traditional;
-                      }
-                  });
-              };
-
-              const updateDemoUI = (demoEl) => {
-                  const layout = demoEl.dataset.layout;
-                  const state = demoEl.dataset.state;
-                  switch(layout) {
-                      case 'segmented':
-                      case 'button_pair':
-                          demoEl.querySelectorAll('[data-lang]').forEach(btn => {
-                              btn.classList.toggle('is-active', btn.dataset.lang === state);
-                              btn.classList.toggle('is-inactive', btn.dataset.lang !== state);
-                          });
-                          break;
-                      case 'slider':
-                          demoEl.classList.toggle('is-simplified', state === 'simplified');
-                          demoEl.classList.toggle('is-traditional', state === 'traditional');
-                          break;
-                      case 'dropdown':
-                          demoEl.querySelector('select').value = state;
-                          break;
-                      case 'radio':
-                          demoEl.querySelector(`input[value="${state}"]`).checked = true;
-                          break;
-                  }
-              };
-
-              Object.values(colorInputs).forEach(input => input.addEventListener('input', updateDemoColors));
-              textStyleSelect.addEventListener('change', updateDemoText);
-
-              demoGrid.addEventListener('click', (e) => {
-                  const demoContainer = e.target.closest('[data-layout]');
-                  if (!demoContainer || demoContainer.dataset.layout === 'dropdown' || demoContainer.dataset.layout === 'radio') return;
-                  const clickedLang = e.target.closest('[data-lang]')?.dataset.lang;
-                  const currentState = demoContainer.dataset.state;
-                  let newState = currentState;
-                  if (clickedLang) { newState = clickedLang; }
-                  else if (demoContainer.dataset.layout === 'slider') { newState = currentState === 'simplified' ? 'traditional' : 'simplified'; }
-                  if (newState !== currentState) { demoContainer.dataset.state = newState; updateDemoUI(demoContainer); }
-              });
-
-              demoGrid.addEventListener('change', (e) => {
-                  const demoContainer = e.target.closest('[data-layout]');
-                   if (!demoContainer || (demoContainer.dataset.layout !== 'dropdown' && demoContainer.dataset.layout !== 'radio')) return;
-                  const newState = e.target.value;
-                  if (newState !== demoContainer.dataset.state) { demoContainer.dataset.state = newState; updateDemoUI(demoContainer); }
-              });
-
-              updateDemoColors();
-              updateDemoText();
-          }
-
-          // --- INITIALIZE PAGE ---
-          const savedLang = localStorage.getItem('preferredLang') || 'en';
-          switchLanguage(savedLang); // This will set language AND start the typing animation
-          setCopyrightYear();
-      });</script></body></html>
+<!doctype html>
+<html lang=en>
+<head>
+<meta charset=UTF-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>
+Chinese Traditional-Simplified Conversion - WordPress Chinese Conversion Plugin
+</title>
+<link rel=preconnect href=https://fonts.googleapis.com>
+<link rel=preconnect href=https://fonts.gstatic.com crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel=stylesheet>
+<style>:root{--bg-white:#FFFFFF;--bg-light-gray:#F9FAFB;--text-dark:#111827;--text-medium:#4B5563;--text-light:#6B7280;--accent-purple:#8B5CF6;--accent-purple-dark:#7C3AED;--border-color:#E5E7EB;--footer-bg:#1F2937;--footer-text:#D1D5DB}*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{font-family:Inter,'Noto Sans TC','Noto Sans SC',sans-serif;background-color:var(--bg-white);color:var(--text-dark);line-height:1.7;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}body.menu-open{overflow:hidden}.hidden{display:none!important}.container{max-width:1100px;margin:0 auto;padding:0 20px}.section-title{font-size:36px;font-weight:800;text-align:center;margin-bottom:16px}.section-subtitle{font-size:18px;text-align:center;color:var(--text-medium);max-width:600px;margin:0 auto 60px auto}.section-wrapper{padding:100px 0}.section-wrapper.bg-gray{background-color:var(--bg-light-gray)}.fade-in-section{opacity:0;transform:translateY(30px);transition:opacity .6s ease-out,transform .6s ease-out}.fade-in-section.is-visible{opacity:1;transform:translateY(0)}#page-header{width:100%;padding:20px 0;border-bottom:1px solid var(--border-color);background-color:rgba(255,255,255,.8);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);position:sticky;top:0;z-index:100}.header-container{display:flex;justify-content:space-between;align-items:center}#logo-link{text-decoration:none;font-size:24px;font-weight:700}#logo-main-text{color:var(--text-dark)}#logo-accent-text{color:var(--accent-purple)}#main-nav{display:flex;gap:30px}.nav-link{text-decoration:none;color:var(--text-medium);font-weight:500;transition:color .2s ease}.nav-link:hover{color:var(--accent-purple)}#lang-switcher{display:flex;gap:5px}.lang-button{background:0 0;border:1px solid #ccc;border-radius:4px;padding:5px 10px;cursor:pointer;font-weight:500;transition:all .2s ease;font-size:14px}.lang-button.active{background-color:var(--accent-purple);color:var(--bg-white);border-color:var(--accent-purple)}#hamburger-menu-btn{display:none;cursor:pointer;background:0 0;border:none;padding:5px}#hamburger-menu-btn .bar{display:block;width:25px;height:3px;margin:5px 0;background-color:var(--text-dark);transition:.3s}#mobile-menu-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,.5);z-index:1000;opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s ease}#mobile-menu-panel{position:fixed;top:10px;left:-100%;width:85%;max-width:320px;height:calc(100vh - 20px);background-color:var(--bg-white);box-shadow:5px 0 35px rgba(0,0,0,.15);transition:left .35s cubic-bezier(.25, .46, .45, .94);display:flex;flex-direction:column;padding:20px;z-index:1001;border-radius:16px}body.menu-open #mobile-menu-overlay{opacity:1;visibility:visible}body.menu-open #mobile-menu-panel{left:10px}#mobile-menu-header{display:flex;justify-content:flex-end;margin-bottom:20px}#mobile-menu-close-btn{background:0 0;border:none;font-size:28px;cursor:pointer;color:var(--text-medium);line-height:1}#mobile-menu-nav{flex-grow:1;border-top:1px solid var(--border-color);padding-top:10px;overflow-y:auto}.mobile-nav-link{display:flex;align-items:center;gap:20px;padding:16px 10px;text-decoration:none;color:var(--text-dark);font-weight:500;font-size:16px;border-radius:8px;transition:background-color .2s}.mobile-nav-link:hover{background-color:var(--bg-light-gray)}.mobile-nav-link .icon{font-size:20px;width:24px;text-align:center;color:var(--text-medium)}#mobile-menu-footer-nav{padding:20px 10px;border-top:1px solid var(--border-color)}#mobile-lang-switcher{display:flex;justify-content:space-between;align-items:center}#mobile-lang-switcher span{font-weight:500}#mobile-lang-switcher .lang-button{font-size:14px}#mobile-menu-cta{display:block;width:100%;padding:16px;background-color:var(--accent-purple);color:var(--bg-white);border:none;border-radius:12px;font-size:18px;font-weight:600;text-align:center;text-decoration:none;margin-top:15px}#hero-section{padding:100px 0;text-align:center}#hero-headline{font-size:52px;font-weight:800;margin-bottom:20px;line-height:1.2}#hero-headline .highlight{color:var(--accent-purple)}#hero-subtitle{font-size:20px;color:var(--text-medium);margin-bottom:40px;max-width:650px;margin-left:auto;margin-right:auto}#hero-cta-button{display:inline-block;background:linear-gradient(45deg,var(--accent-purple),var(--accent-purple-dark));color:var(--bg-white);padding:16px 40px;font-size:18px;font-weight:600;text-decoration:none;border-radius:12px;transition:transform .2s ease,box-shadow .2s ease;box-shadow:0 4px 20px rgba(139,92,246,.4)}#hero-cta-button:hover{transform:translateY(-3px);box-shadow:0 7px 25px rgba(139,92,246,.5)}.typing-cursor{display:inline-block;width:3px;height:1.1em;background-color:var(--accent-purple);animation:blink 1s infinite;vertical-align:text-bottom;margin-left:5px}@keyframes blink{50%{opacity:0}}.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:25px}.feature-item{display:flex;align-items:flex-start;gap:20px;background-color:var(--bg-white);padding:25px;border-radius:12px;border:1px solid var(--border-color);transition:transform .3s ease,box-shadow .3s ease}.feature-item:hover{transform:translateY(-5px);box-shadow:0 10px 30px rgba(0,0,0,.07)}.feature-icon{font-size:24px;color:var(--accent-purple);margin-top:5px}.feature-title{font-weight:600;font-size:18px}.feature-description{color:var(--text-light)}.feature-description a{color:var(--accent-purple);text-decoration:none;font-weight:500}.feature-description a:hover{text-decoration:underline}#features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:25px}.feature-item{display:flex;align-items:flex-start;gap:20px;background-color:var(--bg-white);padding:25px;border-radius:12px;border:1px solid var(--border-color);transition:transform .3s ease,box-shadow .3s ease}.feature-item:hover{transform:translateY(-5px);box-shadow:0 10px 30px rgba(0,0,0,.07)}.feature-icon{font-size:24px;color:var(--accent-purple);margin-top:5px}.feature-title{font-weight:600;font-size:18px}.feature-description{color:var(--text-light)}#previews-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:30px}.preview-card{border:1px solid var(--border-color);border-radius:12px;overflow:hidden;background-color:var(--bg-white);transition:transform .3s ease,box-shadow .3s ease}.preview-card:hover{transform:translateY(-5px);box-shadow:0 10px 30px rgba(0,0,0,.07)}.preview-image-placeholder{width:100%;aspect-ratio:16/9;background-color:var(--bg-light-gray);display:flex;align-items:center;justify-content:center;color:#ccc;font-size:18px;font-family:monospace}.preview-title{font-size:18px;font-weight:600;padding:20px;text-align:center}#project-story-content{display:flex;align-items:center;gap:60px}#project-story-text{flex:1}#project-story-title{font-size:32px;margin-bottom:20px;text-align:left}#project-story-description p{margin-bottom:20px;font-size:18px;color:var(--text-medium)}#project-story-visual{flex:1;text-align:center}#project-story-visual .visual-icon{font-size:150px;color:var(--accent-purple);opacity:.1}#installation-steps{display:flex;justify-content:space-between;gap:40px;margin-top:60px;position:relative}.step-card{flex:1;text-align:center}.step-number{width:60px;height:60px;line-height:60px;border-radius:50%;background-color:var(--accent-purple);color:var(--bg-white);font-size:24px;font-weight:700;margin:0 auto 20px auto;border:4px solid #f3f4f6;z-index:2;position:relative}.step-title{font-size:20px;font-weight:600;margin-bottom:10px}#installation-steps::before{content:'';position:absolute;width:calc(100% - 200px);height:2px;background-image:linear-gradient(to right,#ccc 50%,transparent 50%);background-size:10px 2px;top:30px;left:100px;z-index:1}#faq-container{max-width:800px;margin:0 auto}.faq-item{border-bottom:1px solid var(--border-color)}.faq-question{width:100%;background:0 0;border:none;text-align:left;padding:20px 0;font-size:18px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;color:var(--text-dark)}.faq-icon{font-style:normal;font-weight:700;font-size:24px;transition:transform .3s ease}.faq-question.active .faq-icon{transform:rotate(45deg)}.faq-answer{max-height:0;overflow:hidden;transition:max-height .4s ease-out;color:var(--text-medium)}.faq-answer p{padding-bottom:20px}.faq-answer a{color:var(--accent-purple);text-decoration:none;font-weight:500}.faq-answer a:hover{text-decoration:underline}#follow-us-form{display:flex;gap:10px;margin-top:30px;max-width:600px;margin-left:auto;margin-right:auto}#follow-us-email-input{flex-grow:1;padding:15px;font-size:16px;border:1px solid var(--border-color);border-radius:8px;transition:border-color .2s,box-shadow .2s}#follow-us-email-input:focus{outline:0;border-color:var(--accent-purple);box-shadow:0 0 0 3px rgba(139,92,246,.2)}#follow-us-submit-button{padding:15px 25px;font-size:16px;font-weight:600;border:none;border-radius:8px;background-color:var(--accent-purple);color:#fff;cursor:pointer;transition:background-color .2s}#follow-us-submit-button:hover{background-color:var(--accent-purple-dark)}#page-footer{background-color:var(--footer-bg);color:var(--footer-text);padding:80px 0}.footer-container{max-width:800px;margin:0 auto;text-align:center}#legal-tab-buttons{display:flex;justify-content:center;gap:10px;margin-bottom:30px;border-bottom:1px solid #374151;padding-bottom:15px}.legal-tab-button{background:0 0;border:none;color:var(--footer-text);padding:10px 20px;font-size:16px;font-weight:500;cursor:pointer;border-radius:8px;transition:background-color .2s,color .2s}.legal-tab-button:hover{background-color:#374151}.legal-tab-button.active{background-color:var(--accent-purple);color:#fff}#legal-tab-content{text-align:left;font-size:14px;line-height:1.7}.legal-content-panel{padding:20px;background-color:#2a374a;border-radius:8px}.legal-title{color:var(--bg-white);font-size:18px;margin-bottom:15px}.legal-text{color:#9ca3af}#copyright-text{margin-top:50px;padding-top:30px;border-top:1px solid #374151;font-size:13px;color:#6b7280;text-align:center}#demo-controls{display:flex;justify-content:center;align-items:center;gap:30px;flex-wrap:wrap;padding:20px;background-color:var(--bg-white);border:1px solid var(--border-color);border-radius:12px;margin-bottom:40px}.control-group{display:flex;flex-direction:column;gap:5px}.control-group label{font-size:14px;font-weight:500;color:var(--text-medium)}.control-group input[type=color]{width:100px;height:38px;padding:4px;border:1px solid var(--border-color);border-radius:6px;cursor:pointer}.control-group select{padding:8px 12px;border:1px solid var(--border-color);border-radius:6px;font-size:14px}#previews-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:30px;--demo-active-bg:#8B5CF6;--demo-active-text:#FFFFFF;--demo-inactive-bg:#F3F4F6;--demo-inactive-text:#374151;--demo-border-color:#D1D5DB}.preview-card{border:1px solid var(--border-color);border-radius:12px;background-color:var(--bg-white);padding:30px}.preview-title{font-size:18px;font-weight:600;text-align:center;margin-bottom:25px}.demo-wrapper{display:flex;justify-content:center;align-items:center;min-height:50px;font-size:14px}.preview-card .ctsc-button-demo-pair{display:flex;gap:8px}.preview-card .ctsc-demo-button{padding:.5em 1em;border-radius:6px;border:1px solid var(--demo-border-color);cursor:pointer;transition:all .2s ease;font-weight:700}.preview-card .ctsc-demo-button.is-active{background-color:var(--demo-active-bg);color:var(--demo-active-text);border-color:var(--demo-active-bg)}.preview-card .ctsc-demo-button.is-inactive{background-color:var(--demo-inactive-bg);color:var(--demo-inactive-text)}.preview-card .ctsc-slider-track-demo{display:flex;align-items:center;position:relative;background-color:var(--demo-inactive-bg);border-radius:50px;padding:4px;cursor:pointer}.preview-card .ctsc-slider-track-demo>span{flex:1;text-align:center;padding:.2em 1em;z-index:1;font-weight:700;color:var(--demo-active-bg)}.preview-card .ctsc-slider-thumb-demo{position:absolute;left:4px;top:4px;bottom:4px;background-color:var(--demo-active-bg);border-radius:50px;transition:all .3s ease;width:calc(50% - 4px);z-index:0}.preview-card .ctsc-slider-track-demo.is-traditional .ctsc-slider-thumb-demo{left:50%}.preview-card .ctsc-slider-track-demo.is-simplified .demo-simplified-text,.preview-card .ctsc-slider-track-demo.is-traditional .demo-traditional-text{color:var(--demo-active-text)}.preview-card .ctsc-dropdown-wrapper-demo{position:relative;display:inline-flex}.preview-card .ctsc-dropdown-demo{font-size:inherit;padding:.5em 2em .5em 1em;border-radius:6px;border:1px solid var(--demo-border-color);background-color:var(--demo-inactive-bg);color:var(--demo-inactive-text);-webkit-appearance:none;-moz-appearance:none;appearance:none;cursor:pointer;background-image:none}.preview-card .ctsc-dropdown-arrow-demo{position:absolute;top:50%;right:.7em;transform:translateY(-50%);width:1em;height:1em;fill:var(--demo-inactive-text);pointer-events:none}.preview-card .ctsc-radio-group-demo{display:flex;gap:15px;align-items:center}.preview-card .ctsc-radio-group-demo label{display:flex;align-items:center;gap:5px;cursor:pointer}.preview-card .ctsc-radio-group-demo input[type=radio]{accent-color:var(--demo-active-bg)}.preview-card .ctsc-segmented-control-demo{display:flex;border:1px solid var(--demo-border-color);border-radius:6px;overflow:hidden}.preview-card .ctsc-segment-demo{padding:.5em 1.2em;cursor:pointer;transition:all .2s ease;text-align:center;font-weight:700}.preview-card .ctsc-segment-demo:first-child{border-right:1px solid var(--demo-border-color)}.preview-card .ctsc-segment-demo.is-active{background-color:var(--demo-active-bg);color:var(--demo-active-text)}.preview-card .ctsc-segment-demo.is-inactive{background-color:var(--demo-inactive-bg);color:var(--demo-inactive-text)}@media (max-width:1024px){#lang-switcher,#main-nav{display:none}#hamburger-menu-btn{display:block}.header-container{justify-content:space-between;width:100%}#installation-steps{flex-direction:column;gap:40px}#installation-steps::before{display:none}#project-story-content{flex-direction:column;text-align:center}#project-story-text{order:2}#project-story-visual{order:1}#project-story-title{text-align:center}}@media (max-width:768px){#hero-headline{font-size:40px}#hero-subtitle{font-size:18px}.section-title{font-size:30px}.section-subtitle{font-size:16px}#follow-us-form{flex-direction:column}#features-grid{grid-template-columns:1fr}#legal-tab-buttons{flex-wrap:wrap}}</style>
+</head>
+<body>
+<header id=page-header>
+<div class="container header-container">
+<div id=logo>
+<a id=logo-link href=https://ttboxbox.github.io/chinese-traditional-simplified-conversion/ >
+<span id=logo-main-text>Chinese</span><span id=logo-accent-text>Conversion</span>
+</a>
+</div>
+<nav id=main-nav>
+<a class=nav-link href=#about-section><span lang=en>About</span><span lang=zh-Hant class=hidden>關於</span><span lang=zh-Hans class=hidden>关于</span></a>
+<a class=nav-link href=#features-section><span lang=en>Features</span><span lang=zh-Hant class=hidden>主要功能</span><span lang=zh-Hans class=hidden>主要功能</span></a>
+<a class=nav-link href=#previews-section><span lang=en>Demos</span><span lang=zh-Hant class=hidden>樣式預覽</span><span lang=zh-Hans class=hidden>样式预览</span></a>
+<a class=nav-link href=#installation-section><span lang=en>Installation & Usage</span><span lang=zh-Hant class=hidden>安裝 & 使用</span><span lang=zh-Hans class=hidden>安装 & 使用</span></a>
+<a class=nav-link href=#faq-section><span lang=en>FAQ</span><span lang=zh-Hant class=hidden>常見問題</span><span lang=zh-Hans class=hidden>常见问题</span></a>
+</nav>
+<div id=lang-switcher>
+<button class=lang-button data-lang=en>EN</button>
+<button class=lang-button data-lang=zh-Hant>繁中</button>
+<button class=lang-button data-lang=zh-Hans>简中</button>
+</div>
+<button id=hamburger-menu-btn aria-label="Open menu">
+<span class=bar></span><span class=bar></span><span class=bar></span>
+</button>
+</div>
+</header>
+<div id=mobile-menu-overlay></div>
+<nav id=mobile-menu-panel>
+<div id=mobile-menu-header>
+<button id=mobile-menu-close-btn aria-label="Close menu">×</button>
+</div>
+<div id=mobile-menu-nav>
+<a class=mobile-nav-link href=#about-section><span class=icon>💡</span><span><span lang=en>About</span><span lang=zh-Hant class=hidden>關於</span><span lang=zh-Hans class=hidden>关于</span></span></a>
+<a class=mobile-nav-link href=#features-section><span class=icon>✨</span><span><span lang=en>Features</span><span lang=zh-Hant class=hidden>主要功能</span><span lang=zh-Hans class=hidden>主要功能</span></span></a>
+<a class=mobile-nav-link href=#previews-section><span class=icon>🎨</span><span><span lang=en>Demos</span><span lang=zh-Hant class=hidden>樣式預覽</span><span lang=zh-Hans class=hidden>样式预览</span></span></a>
+<a class=mobile-nav-link href=#installation-section><span class=icon>⚙️</span><span><span lang=en>Installation & Usage</span><span lang=zh-Hant class=hidden>安裝 & 使用</span><span lang=zh-Hans class=hidden>安装 & 使用</span></span></a>
+<a class=mobile-nav-link href=#faq-section><span class=icon>❓</span><span><span lang=en>FAQ</span><span lang=zh-Hant class=hidden>常見問題</span><span lang=zh-Hans class=hidden>常见问题</span></span></a>
+</div>
+<div id=mobile-menu-footer-nav>
+<div id=mobile-lang-switcher>
+<span><span lang=en>Language</span><span lang=zh-Hant class=hidden>語言</span><span lang=zh-Hans class=hidden>语言</span></span>
+<div>
+<button class=lang-button data-lang=en>EN</button><button class=lang-button data-lang=zh-Hant>繁中</button><button class=lang-button data-lang=zh-Hans>简中</button>
+</div>
+</div>
+</div>
+<a id=mobile-menu-cta href=https://shop.yorubox.eu/shop/uncategorized/wp-chinese-traditional-simplified-conversion/ ><span lang=en>Download Now</span><span lang=zh-Hant class=hidden>立即下載</span><span lang=zh-Hans class=hidden>立即下载</span></a>
+</nav>
+<main id=main-content>
+<section id=hero-section class=section-wrapper>
+<div class=container>
+<h1 id=hero-headline>
+<span lang=en>The Smart Way to Switch Chinese Characters.</span>
+<span lang=zh-Hant class=hidden>WordPress 自動繁簡字體切換插件</span>
+<span lang=zh-Hans class=hidden>WordPress 自动繁简字体切换插件</span>
+<br>
+<span class=highlight>
+<span id=typing-target></span><span class=typing-cursor></span>
+</span>
+</h1>
+<p id=hero-subtitle>
+<span lang=en>The ultimate WordPress plugin to seamlessly convert between Traditional and Simplified Chinese. Expand your reach with a single click.</span>
+<span lang=zh-Hant class=hidden>終極的 WordPress 插件，實現繁體與簡體中文的無縫轉換。一鍵點擊，拓展您的讀者群。</span>
+<span lang=zh-Hans class=hidden>终极的 WordPress 插件，实现繁体与简体中文的无缝转换。一键点击，拓展您的读者群。</span>
+</p>
+<a id=hero-cta-button href=https://shop.yorubox.eu/shop/uncategorized/wp-chinese-traditional-simplified-conversion>
+<span lang=en>Download for Free</span>
+<span lang=zh-Hant class=hidden>免費下載</span>
+<span lang=zh-Hans class=hidden>免费下载</span>
+</a>
+</div>
+</section>
+<section id=about-section class="section-wrapper fade-in-section">
+<div class=container>
+<div id=project-story-content>
+<div id=project-story-text>
+<h2 id=project-story-title>
+<span lang=en>About This Project</span>
+<span lang=zh-Hant class=hidden>關於本專案</span>
+<span lang=zh-Hans class=hidden>关于本专案</span>
+</h2>
+<div id=project-story-description>
+<p>
+<span lang=en>Chinese Traditional-Simplified Conversion was born out of a simple idea: a simple plugin to switch between traditional and simplified Chinese so that users can easily read articles regardless of their preference. Allow more websites to easily convert from simplified fonts to traditional fonts or from traditional Chinese characters to simplified Chinese characters.</span>
+<span lang=zh-Hant class=hidden>Chinese Traditional-Simplified Conversion 誕生於一個簡單的想法：一個簡單的插件來切換繁體和簡體字讓不管是偏好哪個字體的用戶都可以輕鬆的閱讀文章。 讓更多的網站可以輕鬆的從簡體字體轉換成繁體字體或是從繁體漢字轉換成簡體漢字。</span>
+<span lang=zh-Hans class=hidden>诞生于一个简单的想法：一个简单的插件来切换繁体和简体字让不管是偏好哪个字体的用户都可以轻松的阅读文章。让更多的网站可以轻松的从简字体转换成繁字体或是从繁汉字转换成简汉字。</span>
+</p>
+</div>
+</div>
+<div id=project-story-visual>
+<div class=visual-icon>🚀</div>
+</div>
+</div>
+</div>
+</section>
+<section id=features-section class="section-wrapper fade-in-section">
+<div class=container>
+<h2 class=section-title>
+<span lang=en>Main Features</span>
+<span lang=zh-Hant class=hidden>主要功能</span>
+<span lang=zh-Hans class=hidden>主要功能</span>
+</h2>
+<div id=features-grid>
+<div class=feature-item>
+<span class=feature-icon>🔄</span>
+<div>
+<h3 class=feature-title>
+<span lang=en>Automatic S/T Conversion</span><span lang=zh-Hant class=hidden>自動切換繁體／簡體文字</span><span lang=zh-Hans class=hidden>自动切换繁体／简体文字</span>
+</h3>
+<p class=feature-description>
+<span lang=en>Converts all text on the page instantly.</span><span lang=zh-Hant class=hidden>即時轉換頁面上的所有文字。</span><span lang=zh-Hans class=hidden>即时转换页面上的所有文字。</span>
+</p>
+</div>
+</div>
+<div class=feature-item>
+<span class=feature-icon>🎯</span>
+<div>
+<h3 class=feature-title>
+<span lang=en>Shortcode Placement</span><span lang=zh-Hant class=hidden>手動加入按鈕位置</span><span lang=zh-Hans class=hidden>手动加入按钮位置</span>
+</h3>
+<p class=feature-description>
+<span lang=en>Use `[chinese_converter]` to place the toggle anywhere.</span><span lang=zh-Hant class=hidden>使用 `[chinese_converter]` 短代碼將切換器放置在任何位置。</span><span lang=zh-Hans class=hidden>使用 `[chinese_converter]` 短代码将切换器放置在任何位置。</span>
+</p>
+</div>
+</div>
+<div class=feature-item>
+<span class=feature-icon>🎨</span>
+<div>
+<h3 class=feature-title>
+<span lang=en>Full Style Customization</span><span lang=zh-Hant class=hidden>自訂顏色與文字樣式</span><span lang=zh-Hans class=hidden>自订颜色与文字样式</span>
+</h3>
+<p class=feature-description>
+<span lang=en>Control colors, fonts, border size, radius, and more.</span><span lang=zh-Hant class=hidden>自由控制顏色、字體、邊框大小、圓角等。</span><span lang=zh-Hans class=hidden>自由控制颜色、字体、边框大小、圆角等。</span>
+</p>
+</div>
+</div>
+<div class=feature-item>
+<span class=feature-icon>📚</span>
+<div>
+<h3 class=feature-title>
+<span lang=en>Multiple Layout Templates</span><span lang=zh-Hant class=hidden>多種內建樣式可選</span><span lang=zh-Hans class=hidden>多种内建样式可选</span>
+</h3>
+<p class=feature-description>
+<span lang=en>Choose from segmented controls, buttons, dropdowns, and more.</span><span lang=zh-Hant class=hidden>提供分段控制器、按鈕、下拉選單等多種樣式。</span><span lang=zh-Hans class=hidden>提供分段控制器、按钮、下拉菜单等多种样式。</span>
+</p>
+</div>
+</div>
+<div class=feature-item>
+<span class=feature-icon>💾</span>
+<div>
+<h3 class=feature-title>
+<span lang=en>Import/Export Styles</span><span lang=zh-Hant class=hidden>匯入／匯出造型設定</span><span lang=zh-Hans class=hidden>汇入／汇出造型设定</span>
+</h3>
+<p class=feature-description>
+<span lang=en>Save and share your custom designs with a single click.</span><span lang=zh-Hant class=hidden>一鍵保存並分享您的自訂設計。</span><span lang=zh-Hans class=hidden>一键保存并分享您的自订设计。</span>
+</p>
+</div>
+</div>
+<div class=feature-item>
+<span class=feature-icon>🌙</span>
+<div>
+<h3 class=feature-title>
+<span lang=en>Dark Mode Ready</span><span lang=zh-Hant class=hidden>支援深色模式</span><span lang=zh-Hans class=hidden>支持深色模式</span>
+</h3>
+<p class=feature-description>
+<span lang=en>Customizable colors ensure the toggle looks great on any background.</span><span lang=zh-Hant class=hidden>可自訂的顏色確保切換器在任何背景下都美觀。</span><span lang=zh-Hans class=hidden>可自定义的颜色确保切换器在任何背景下都美观。</span>
+</p>
+</div>
+</div>
+<div class=feature-item>
+<span class=feature-icon>🍪</span>
+<div>
+<h3 class=feature-title>
+<span lang=en>Remember User Preference</span><span lang=zh-Hant class=hidden>保存使用者語言偏好</span><span lang=zh-Hans class=hidden>保存使用者语言偏好</span>
+</h3>
+<p class=feature-description>
+<span lang=en>Uses a cookie to remember the visitor's last choice.</span><span lang=zh-Hant class=hidden>使用 Cookie 記住訪客的最後選擇。</span><span lang=zh-Hans class=hidden>使用 Cookie 记住访客的最后选择。</span>
+</p>
+</div>
+</div>
+<div class=feature-item>
+<span class=feature-icon>🔍</span>
+<div>
+<h3 class=feature-title>
+<span lang=en>Unified Chinese Search</span><span lang=zh-Hant class=hidden>搜尋欄支援繁簡體文字</span><span lang=zh-Hans class=hidden>搜索栏支持繁简体文字</span>
+</h3>
+<p class=feature-description>
+<span lang=en>Searching for a term finds results in both S/T versions.</span><span lang=zh-Hant class=hidden>搜尋一個詞彙可同時找到簡體和繁體版本的結果。</span><span lang=zh-Hans class=hidden>搜寻一个词汇可同时找到简体和繁体版本的结果。</span>
+</p>
+</div>
+</div>
+<div class=feature-item>
+<span class=feature-icon>🌐</span>
+<div>
+<h3 class=feature-title>
+<span lang=en>Browser Language Detection</span><span lang=zh-Hant class=hidden>自動判斷使用者瀏覽器語言</span><span lang=zh-Hans class=hidden>自动判断使用者浏览器语言</span>
+</h3>
+<p class=feature-description>
+<span lang=en>Automatically shows the right version to first-time visitors.</span><span lang=zh-Hant class=hidden>為首次訪問者自動顯示正確的語言版本。</span><span lang=zh-Hans class=hidden>为首次访问者自动显示正确的语言版本。</span>
+</p>
+</div>
+</div>
+<div class=feature-item>
+<span class=feature-icon>🧩</span>
+<div>
+<h3 class=feature-title>
+<span lang=en>Plugin Compatible</span><span lang=zh-Hant class=hidden>插件兼容性</span><span lang=zh-Hans class=hidden>插件兼容性</span>
+</h3>
+<p class=feature-description>
+<span lang=en>Designed to work alongside caching and multilingual plugins.</span><span lang=zh-Hant class=hidden>旨在與快取和多語言插件協同工作。</span><span lang=zh-Hans class=hidden>旨在与缓存和多语言插件协同工作。</span>
+</p>
+</div>
+</div>
+<div class=feature-item>
+<span class=feature-icon>💡</span>
+<div>
+<h3 class=feature-title>
+<span lang=en>Smart Visibility</span><span lang=zh-Hant class=hidden>非中文模式自動關閉切換鍵</span><span lang=zh-Hans class=hidden>非中文模式自动关闭切换键</span>
+</h3>
+<p class=feature-description>
+<span lang=en>Hides the toggle on non-Chinese pages to avoid confusion.</span><span lang=zh-Hant class=hidden>在非中文頁面上自動隱藏切換器，避免混淆。</span><span lang=zh-Hans class=hidden>在非中文页面上自动隐藏切换器，避免混淆。</span>
+</p>
+</div>
+</div>
+<div class=feature-item>
+<span class=feature-icon>➕</span>
+<div>
+<h3 class=feature-title>
+<span lang=en>More Features to Come!</span><span lang=zh-Hant class=hidden>更多功能即將推出！</span><span lang=zh-Hans class=hidden>更多功能即将推出！</span>
+</h3>
+<p class=feature-description>
+<span lang=en>Have an idea? Let us know!</span>
+<span lang=zh-Hant class=hidden>如果您有任何希望加入的功能，歡迎告訴我們！</span>
+<span lang=zh-Hans class=hidden>如果您有任何希望加入的功能，欢迎告诉我们！</span>
+</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id=previews-section class="section-wrapper fade-in-section">
+<div class=container>
+<h2 class=section-title>
+<span lang=en>Live Demo Playground</span>
+<span lang=zh-Hant class=hidden>樣式預覽</span>
+<span lang=zh-Hans class=hidden>样式预览</span>
+</h2>
+<p class=section-subtitle>
+<span lang=en>Try out the different layouts and styles in real-time! See how the toggle can perfectly match your site's design.</span>
+<span lang=zh-Hant class=hidden>即時體驗不同的佈局和風格！看看切換器如何完美匹配您的網站設計。</span>
+<span lang=zh-Hans class=hidden>即时体验不同的布局和风格！看看切换器如何完美匹配您的网站设计。</span>
+</p>
+<div id=demo-controls>
+<div class=control-group>
+<label for=demo-text-style>Display Text</label>
+<select id=demo-text-style>
+<option value=char>简 / 繁</option>
+<option value=code>CN / TW</option>
+<option value=full>簡化字 / 正體字</option>
+</select>
+</div>
+<div class=control-group>
+<label for=demo-active-bg-color>Active BG</label>
+<input type=color id=demo-active-bg-color value=#8B5CF6>
+</div>
+<div class=control-group>
+<label for=demo-active-text-color>Active Text</label>
+<input type=color id=demo-active-text-color value=#FFFFFF>
+</div>
+<div class=control-group>
+<label for=demo-inactive-bg-color>Inactive BG</label>
+<input type=color id=demo-inactive-bg-color value=#F3F4F6>
+</div>
+<div class=control-group>
+<label for=demo-inactive-text-color>Inactive Text</label>
+<input type=color id=demo-inactive-text-color value=#374151>
+</div>
+</div>
+<div id=previews-grid>
+<div class=preview-card>
+<h3 class=preview-title>Segmented Control</h3>
+<div class=demo-wrapper>
+<div class=ctsc-segmented-control-demo data-layout=segmented data-state=simplified>
+<div class="ctsc-segment-demo is-active" data-lang=simplified>
+<span class=demo-text></span>
+</div>
+<div class="ctsc-segment-demo is-inactive" data-lang=traditional>
+<span class=demo-text></span>
+</div>
+</div>
+</div>
+</div>
+<div class=preview-card>
+<h3 class=preview-title>Button Pair</h3>
+<div class=demo-wrapper>
+<div class=ctsc-button-demo-pair data-layout=button_pair data-state=simplified>
+<button type=button class="ctsc-demo-button is-active" data-lang=simplified>
+<span class=demo-text></span>
+</button>
+<button type=button class="ctsc-demo-button is-inactive" data-lang=traditional>
+<span class=demo-text></span>
+</button>
+</div>
+</div>
+</div>
+<div class=preview-card>
+<h3 class=preview-title>Slider Toggle</h3>
+<div class=demo-wrapper>
+<div class="ctsc-slider-track-demo is-simplified" data-layout=slider data-state=simplified>
+<div class=ctsc-slider-thumb-demo></div>
+<span class="demo-simplified-text demo-text"></span>
+<span class="demo-traditional-text demo-text"></span>
+</div>
+</div>
+</div>
+<div class=preview-card>
+<h3 class=preview-title>Dropdown Menu</h3>
+<div class=demo-wrapper>
+<div class=ctsc-dropdown-wrapper-demo data-layout=dropdown>
+<select class=ctsc-dropdown-demo>
+<option value=simplified>
+<span class=demo-text></span>
+</option>
+<option value=traditional>
+<span class=demo-text></span>
+</option>
+</select>
+<svg class=ctsc-dropdown-arrow-demo xmlns=http://www.w3.org/2000/svg viewBox="0 0 24 24" width=24 height=24 fill=currentColor>
+<path d="M7 10l5 5 5-5H7z"></path>
+</svg>
+</div>
+</div>
+</div>
+<div class=preview-card>
+<h3 class=preview-title>Radio Buttons</h3>
+<div class=demo-wrapper>
+<div class=ctsc-radio-group-demo data-layout=radio>
+<label><input type=radio name=demo-radio value=simplified checked>
+<span class=demo-text></span></label>
+<label><input type=radio name=demo-radio value=traditional>
+<span class=demo-text></span></label>
+</div>
+</div>
+</div>
+<div class=preview-card>
+<div>
+<h3 class=preview-title>
+<span lang=en>More?</span>
+<span lang=zh-Hant class=hidden>更多造型?</span>
+<span lang=zh-Hans class=hidden>更多造型?</span>
+</h3>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id=installation-section class="section-wrapper bg-gray fade-in-section">
+<div class=container>
+<h2 class=section-title>
+<span lang=en>Installation & Usage</span>
+<span lang=zh-Hant class=hidden>安裝 & 使用</span>
+<span lang=zh-Hans class=hidden>安装 & 使用</span>
+</h2>
+<div id=installation-steps>
+<div class=step-card>
+<div class=step-number>1</div>
+<h3 class=step-title>
+<span lang=en>Install</span>
+<span lang=zh-Hant class=hidden>安裝</span>
+<span lang=zh-Hans class=hidden>安装</span>
+</h3>
+<p class=step-description>
+<span lang=en>Like any other plugin, download, upload to your WordPress site, and activate it after installation.</span>
+<span lang=zh-Hant class=hidden>像安裝其他外掛一樣，下載並上傳到 WordPress 網站上，在安裝結束後啟用插件。</span>
+<span lang=zh-Hans class=hidden>像安装其他插件一样，下载并上传到 WordPress 网站上，在安装结束后启用插件。</span>
+</p>
+</div>
+<div class=step-card>
+<div class=step-number>2</div>
+<h3 class=step-title>
+<span lang=en>Customize Style</span>
+<span lang=zh-Hant class=hidden>自訂造型</span>
+<span lang=zh-Hans class=hidden>自订造型</span>
+</h3>
+<p class=step-description>
+<span lang=en>On the plugin's settings page, you can freely choose the display mode and customize text, colors, and more.</span>
+<span lang=zh-Hant class=hidden>在插件的設定頁面中你可以自由決定顯示模式和自訂文字、顏色等。</span>
+<span lang=zh-Hans class=hidden>在插件的设定页面中你可以自由决定显示模式和自定义文字、颜色等。</span>
+</p>
+</div>
+<div class=step-card>
+<div class=step-number>3</div>
+<h3 class=step-title>
+<span lang=en>Start Using!</span>
+<span lang=zh-Hant class=hidden>開始使用！</span>
+<span lang=zh-Hans class=hidden>开始使用！</span>
+</h3>
+<p class=step-description>
+<span lang=en>Enable "Smart Display" to automatically insert the toggle, or use the shortcode for manual placement!</span>
+<span lang=zh-Hant class=hidden>開啟 "Add Toggle to Menu" 後將自動插入轉換鍵或是使用短代碼!</span>
+<span lang=zh-Hans class=hidden>开启 "Add Toggle to Menu" 后将自动插入转换键或是使用短代码!</span>
+</p>
+</div>
+</div>
+</div>
+</section>
+<section id=faq-section class="section-wrapper fade-in-section">
+<div class=container>
+<h2 class=section-title>
+<span lang=en>Frequently Asked Questions</span><span lang=zh-Hant class=hidden>常見問題</span><span lang=zh-Hans class=hidden>常见问题</span>
+</h2>
+<div id=faq-container>
+<div class=faq-item>
+<button class=faq-question>
+<span><span lang=en>Can I customize the style of the toggle button?</span><span lang=zh-Hant class=hidden>我可以自訂切換按鈕的樣式嗎？</span><span lang=zh-Hans class=hidden>我可以自定义切换按钮的样式吗？</span></span><i class=faq-icon>+</i>
+</button>
+<div class=faq-answer>
+<p>
+<span lang=en>Absolutely! The plugin's settings page gives you full control over colors, fonts, border size, radius, and more to perfectly match your theme.</span><span lang=zh-Hant class=hidden>當然可以！插件的設定頁面讓您完全控制顏色、字體、邊框大小、圓角等，以完美匹配您的主題。</span><span lang=zh-Hans class=hidden>当然可以！插件的设定页面让您完全控制颜色、字体、边框大小、圆角等，以完美匹配您的主题。</span>
+</p>
+</div>
+</div>
+<div class=faq-item>
+<button class=faq-question>
+<span><span lang=en>What styles can I choose from?</span><span lang=zh-Hant class=hidden>有哪些造型可以選擇？</span><span lang=zh-Hans class=hidden>有哪些造型可以选择？</span></span><i class=faq-icon>+</i>
+</button>
+<div class=faq-answer>
+<p>
+<span lang=en>You can choose from five built-in layouts: Segmented Control, Button Pair, Slider Toggle, Dropdown Menu, and Radio Buttons.</span><span lang=zh-Hant class=hidden>您可以從五種內建佈局中選擇：分段控制器、按鈕對、滑動開關、下拉選單和圓形按鈕。</span><span lang=zh-Hans class=hidden>您可以从五种内建布局中选择：分段控制器、按钮对、滑动开关、下拉菜单和圆形按钮。</span>
+</p>
+</div>
+</div>
+<div class=faq-item>
+<button class=faq-question>
+<span><span lang=en>Can I customize the display text?</span><span lang=zh-Hant class=hidden>我可以自訂顯示文字嗎？</span><span lang=zh-Hans class=hidden>我可以自定义显示文字吗？</span></span><i class=faq-icon>+</i>
+</button>
+<div class=faq-answer>
+<p>
+<span lang=en>Yes. You can choose between different text formats like "简 / 繁", "CN / TW", or the full text "簡化字 / 正體字".</span><span lang=zh-Hant class=hidden>可以。您可以選擇不同的文字格式，例如「简 / 繁」、「CN / TW」或完整文字「簡化字 / 正體字」。</span><span lang=zh-Hans class=hidden>可以。您可以选择不同的文字格式，例如“简 / 繁”、“CN / TW”或完整文字“简化字 / 正体字”。</span>
+</p>
+</div>
+</div>
+<div class=faq-item>
+<button class=faq-question>
+<span><span lang=en>Can I use this with other multilingual plugins?</span><span lang=zh-Hant class=hidden>我可以同時使用其他多語言插件嗎？</span><span lang=zh-Hans class=hidden>我可以同时使用其他多语言插件吗？</span></span><i class=faq-icon>+</i>
+</button>
+<div class=faq-answer>
+<p>
+<span lang=en>Yes. This plugin performs client-side conversion, so it works independently and should not conflict with backend translation plugins like WPML or Polylang. It acts as a user-friendly enhancement on top of your site's primary language.</span><span lang=zh-Hant class=hidden>可以。本插件執行客戶端轉換，因此它獨立運作，不應與 WPML 或 Polylang 等後端翻譯插件衝突。它是在您網站主要語言之上的用戶友好功能增強。</span><span lang=zh-Hans class=hidden>可以。本插件执行客户端转换，因此它独立运作，不应与 WPML 或 Polylang 等后端翻译插件冲突。它是在您网站主要语言之上的用户友好功能增强。</span>
+</p>
+</div>
+</div>
+<div class=faq-item>
+<button class=faq-question>
+<span><span lang=en>Can you add [feature X]?</span><span lang=zh-Hant class=hidden>可以增加___功能嗎？</span><span lang=zh-Hans class=hidden>可以增加___功能吗？</span></span><i class=faq-icon>+</i>
+</button>
+<div class=faq-answer>
+<p>
+<span lang=en>Of course! We are always open to suggestions. Please
+<a href=https://yorubox.eu/contact/ >contact us using the form below</a>
+with your idea.</span><span lang=zh-Hant class=hidden>當然可以！我們隨時歡迎建議。請<a href=https://yorubox.eu/contact/ >透過表單聯絡我們</a>，告訴我們您的想法。</span><span lang=zh-Hans class=hidden>当然可以！我们随时欢迎建议。请<a href=https://yorubox.eu/contact/ >透过下方的表单联系我们</a>，告诉我们您的想法。</span>
+</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer id=page-footer>
+<div class="container footer-container">
+<div id=legal-tab-container>
+<div id=legal-tab-buttons>
+<button class="legal-tab-button active" data-target=#info-content>
+<span lang=en>Info</span>
+<span lang=zh-Hant class=hidden>網站資訊</span>
+<span lang=zh-Hans class=hidden>网站信息</span>
+</button>
+<button class=legal-tab-button data-target=#privacy-content>
+<span lang=en>Privacy</span>
+<span lang=zh-Hant class=hidden>隱私政策</span>
+<span lang=zh-Hans class=hidden>隐私政策</span>
+</button>
+<button class=legal-tab-button data-target=#license-content>
+<span lang=en>License</span>
+<span lang=zh-Hant class=hidden>授權條款</span>
+<span lang=zh-Hans class=hidden>授权条款</span>
+</button>
+</div>
+<div id=legal-tab-content>
+<div id=info-content class=legal-content-panel>
+<h4 class=legal-title>
+<span lang=en>About This Site</span>
+<span lang=zh-Hant class=hidden>網站資訊</span>
+<span lang=zh-Hans class=hidden>网站信息</span>
+</h4>
+<p class=legal-text>
+<span lang=en>
+This website serves as the official homepage for the Chinese Traditional-Simplified Conversion plugin. Our goal is to provide a simple, powerful, and free tool that helps WordPress creators bridge the language gap between Simplified and Traditional Chinese-speaking audiences. We believe in an open and accessible web for everyone, regardless of their preferred reading characters.
+</span>
+<span lang=zh-Hant class=hidden>
+本網站是 Chinese Traditional-Simplified Conversion 插件的官方主頁。我們的目標是提供一個簡單、強大且免費的工具，幫助 WordPress 創作者跨越簡體和繁體中文讀者之間的語言鴻溝。我們相信，無論使用者偏好何種閱讀字體，網路都應該是開放且易於訪問的。
+</span>
+<span lang=zh-Hans class=hidden>
+本网站是 Chinese Traditional-Simplified Conversion 插件的官方主页。我们的目标是提供一个简单、强大且免费的工具，帮助 WordPress 创作者跨越简体和繁体中文读者之间的语言鸿沟。我们相信，无论用户偏好何种阅读字体，网络都应该是开放且易于访问的。
+</span>
+</p>
+</div>
+<div id=privacy-content class="legal-content-panel hidden">
+<h4 class=legal-title>
+<span lang=en>Privacy Policy</span><span lang=zh-Hant class=hidden>隱私政策</span><span lang=zh-Hans class=hidden>隐私政策</span>
+</h4>
+<p class=legal-text>
+<span lang=en>Our plugin, Chinese Traditional-Simplified Conversion, processes content locally in the user's browser. It does not transmit any content or personal data to us.</span><span lang=zh-Hant class=hidden>我們的插件 Chinese Traditional-Simplified Conversion 在用戶的瀏覽器中本地處理內容，不會傳輸任何內容或個人數據給我們。</span><span lang=zh-Hans class=hidden>我们的插件 Chinese Traditional-Simplified Conversion 在用户的浏览器中本地处理内容，不会传输任何内容或个人数据给我们。</span>
+</p>
+</div>
+<div id=license-content class="legal-content-panel hidden">
+<h4 class=legal-title>
+<span lang=en>License & Disclaimer</span><span lang=zh-Hant class=hidden>授權與免責聲明</span><span lang=zh-Hans class=hidden>授权与免责声明</span>
+</h4>
+<p class=legal-text>
+<span lang=en>This plugin is licensed under the GPLv2 or later. It is provided "as is", without warranty of any kind. We hold no responsibility for any issues arising from its use.</span><span lang=zh-Hant class=hidden>本插件根據 GPLv2 或更新版本授權。本插件按“原樣”提供，不附帶任何形式的保證。我們對因使用本工具而導致的任何問題概不負責。</span><span lang=zh-Hans class=hidden>本插件根据 GPLv2 或更新版本授权。本插件按“原样”提供，不附带任何形式的保证。我们对因使用本工具而导致的任何问题概不负责。</span>
+</p>
+</div>
+</div>
+</div>
+<p id=copyright-text>
+<span lang=en>© <span class=current-year></span> YoruBox. All Rights Reserved.</span><span lang=zh-Hant class=hidden>© <span class=current-year></span> YoruBox. 版權所有。</span><span lang=zh-Hans class=hidden>© <span class=current-year></span> YoruBox. 版权所有。</span>
+</p>
+</div>
+</footer>
+<script>!function(t,e,a,n){function c(){if(!e.getElementById("taku-js")){var t=e.getElementsByTagName(n)[0],a=e.createElement(n);a.type="text/javascript",a.async=!0,a.src="https://cdn.taku-app.com/js/latest.js",t.parentNode.insertBefore(a,t)}}if("function"!=typeof t.Taku){var o=function(){o.q.push(arguments)};o.q=[],t.Taku=o,"complete"===e.readyState?c():t.attachEvent?t.attachEvent("onload",c):t.addEventListener("load",c,!1)}}(window,document,0,"script"),window.Taku("news:boot",{api_public_key:"58c556f5c00f03798ed9972b06e4c7cb"})</script>
+<script>document.addEventListener("DOMContentLoaded",(()=>{const e=document.querySelector("body"),t=document.getElementById("hamburger-menu-btn"),a=document.getElementById("mobile-menu-overlay"),n=document.getElementById("mobile-menu-close-btn"),l=document.querySelectorAll(".mobile-nav-link"),i=document.querySelectorAll(".lang-button"),o=document.querySelectorAll("span[lang]"),s=document.querySelectorAll(".faq-question"),d=document.querySelectorAll(".fade-in-section"),r=document.getElementById("follow-us-form"),c=document.querySelectorAll(".legal-tab-button"),u=document.querySelectorAll(".legal-content-panel"),m=document.getElementById("typing-target"),g={en:"Convert Simplified / Traditional.","zh-Hant":"自動轉換簡體／繁體漢字","zh-Hans":"自动转换简体／繁体汉字"};let v,y=!1,p=0;const f=document.getElementById("previews-grid"),E=document.getElementById("demo-text-style"),h={activeBg:document.getElementById("demo-active-bg-color"),activeText:document.getElementById("demo-active-text-color"),inactiveBg:document.getElementById("demo-inactive-bg-color"),inactiveText:document.getElementById("demo-inactive-text-color")},x=f?f.querySelectorAll("[data-layout]"):[],b={char:{simplified:"简",traditional:"繁"},code:{simplified:"CN",traditional:"TW"},full:{simplified:"簡化字",traditional:"正體字"}},L=()=>e.classList.remove("menu-open");t&&t.addEventListener("click",(()=>e.classList.add("menu-open"))),n&&n.addEventListener("click",L),a&&a.addEventListener("click",L),l&&l.forEach((e=>e.addEventListener("click",L)));const S=e=>{o.forEach((t=>t.classList.toggle("hidden",t.getAttribute("lang")!==e))),i.forEach((t=>t.classList.toggle("active",t.dataset.lang===e))),localStorage.setItem("preferredLang",e),document.documentElement.lang=e,m&&(p=0,y=!1,q())};i.length>0&&i.forEach((e=>e.addEventListener("click",(e=>{e.stopPropagation(),S(e.currentTarget.dataset.lang)}))));const q=()=>{if(!m)return;clearTimeout(v);const e=document.documentElement.lang||"en",t=g[e]||g.en;let a=150;y?(a=75,m.textContent=t.substring(0,p-1),p--):(m.textContent=t.substring(0,p+1),p++),y||p!==t.length?y&&0===p&&(y=!1,a=500):(a=3e3,y=!0),v=setTimeout(q,a)};if(s.length>0&&s.forEach((e=>{e.addEventListener("click",(()=>{const t=e.nextElementSibling,a=e.classList.contains("active");s.forEach((e=>{e.classList.remove("active"),e.nextElementSibling.style.maxHeight=null})),a||(e.classList.add("active"),t.style.maxHeight=t.scrollHeight+"px")}))})),d.length>0){const e=new IntersectionObserver(((e,t)=>{e.forEach((e=>{e.isIntersecting&&(e.target.classList.add("is-visible"),t.unobserve(e.target))}))}),{threshold:.1,rootMargin:"0px 0px -50px 0px"});d.forEach((t=>e.observe(t)))}r&&r.addEventListener("submit",(e=>{e.preventDefault(),alert("Thank you for your interest!"),document.getElementById("follow-us-email-input").value=""})),c.length>0&&c.forEach((e=>{e.addEventListener("click",(()=>{c.forEach((e=>e.classList.remove("active"))),e.classList.add("active");const t=e.dataset.target;u.forEach((e=>{e.classList.toggle("hidden",`#${e.id}`!==t)}))}))}));if(f){const e=()=>{f.style.setProperty("--demo-active-bg",h.activeBg.value),f.style.setProperty("--demo-active-text",h.activeText.value),f.style.setProperty("--demo-inactive-bg",h.inactiveBg.value),f.style.setProperty("--demo-inactive-text",h.inactiveText.value)},t=()=>{const e=E.value,t=b[e];x.forEach((e=>{const a=e.dataset.layout;"dropdown"===a?(e.querySelector('option[value="simplified"]').textContent=t.simplified,e.querySelector('option[value="traditional"]').textContent=t.traditional):"radio"===a?(e.querySelector('input[value="simplified"]').nextElementSibling.textContent=t.simplified,e.querySelector('input[value="traditional"]').nextElementSibling.textContent=t.traditional):"slider"===a?(e.querySelector(".demo-simplified-text").textContent=t.simplified,e.querySelector(".demo-traditional-text").textContent=t.traditional):(e.querySelector('[data-lang="simplified"] .demo-text').textContent=t.simplified,e.querySelector('[data-lang="traditional"] .demo-text').textContent=t.traditional)}))},a=e=>{const t=e.dataset.layout,a=e.dataset.state;switch(t){case"segmented":case"button_pair":e.querySelectorAll("[data-lang]").forEach((e=>{e.classList.toggle("is-active",e.dataset.lang===a),e.classList.toggle("is-inactive",e.dataset.lang!==a)}));break;case"slider":e.classList.toggle("is-simplified","simplified"===a),e.classList.toggle("is-traditional","traditional"===a);break;case"dropdown":e.querySelector("select").value=a;break;case"radio":e.querySelector(`input[value="${a}"]`).checked=!0}};Object.values(h).forEach((t=>t.addEventListener("input",e))),E.addEventListener("change",t),f.addEventListener("click",(e=>{const t=e.target.closest("[data-layout]");if(!t||"dropdown"===t.dataset.layout||"radio"===t.dataset.layout)return;const n=e.target.closest("[data-lang]")?.dataset.lang,l=t.dataset.state;let i=l;n?i=n:"slider"===t.dataset.layout&&(i="simplified"===l?"traditional":"simplified"),i!==l&&(t.dataset.state=i,a(t))})),f.addEventListener("change",(e=>{const t=e.target.closest("[data-layout]");if(!t||"dropdown"!==t.dataset.layout&&"radio"!==t.dataset.layout)return;const n=e.target.value;n!==t.dataset.state&&(t.dataset.state=n,a(t))})),e(),t()}const B=localStorage.getItem("preferredLang")||"en";S(B),document.querySelectorAll(".current-year").forEach((e=>e.textContent=(new Date).getFullYear()))}))</script>
+</body>
+</html>
